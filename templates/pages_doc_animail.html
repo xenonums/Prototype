@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-toolbar clearfix">
+                <form class="pull-right search-bar" method="get" action="#!" role="form">
+                  <div class="input-group">
+
+                <form class="pull-right search-bar" method="get" action="#!" role="form">
+                  <div class="input-group">
+                    <input type="text" class="form-control" value="" id="searchstr" name="searchstr" placeholder="请输入名称">
+                    <div class="input-group-btn">
+                    <button type="button" class="btn btn-default" onclick="javascript:findIt()">搜索</button>
+
+                  </div>
+                  </div>
+                </form>
+
+                  </div>
+                </form>
+                <div class="toolbar-btn-action">
+                  <a class="btn btn-primary m-r-5" href="javascript:;" id="add"><i class="mdi mdi-plus"></i> 新增</a>
+
+                  <a class="btn btn-danger" href="#!" onclick="MultiDel()"><i class="mdi mdi-window-close"></i> 删除</a>
+                </div>
+              </div>
+              <div class="card-body">
+                
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>
+                          <label class="lyear-checkbox checkbox-primary">
+                            <input type="checkbox" id="check-all"><span></span>
+                          </label>
+                        </th>
+                        <th>动物ID</th>
+                        <th>入栏时间</th>
+                        <th>饲养地点</th>
+                        <th>品种类型</th>
+                        <th>父类</th>
+                        <th>圈栏号</th>
+                        <th>是否病死</th>
+                        <th>是否转出</th>
+                        <th>企业营业执照号码</th>
+                        <th>录入员工</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for id in mess %}
+                      <tr>
+                        <td>
+                          <label class="lyear-checkbox checkbox-primary">
+                            <input type="checkbox" name="ids[]" value="{{ id.id }}"><span></span>
+                          </label>
+                        </td>
+                        <td>{{ id.id }}</td>
+                        <td>{{ id.create_time | date:"Y/m/d" }}</td>
+                        <td>
+                            {% if id.address == '510811' %}
+                                {{ "四川 广元" }}
+                             {% elif id.address == '620105' %}
+                                {{ "甘肃 兰州" }}
+                             {% elif id.address == '610102' %}
+                                {{ "陕西 西安" }}
+                             {% endif %}
+
+                        </td>
+                        <td>{{ id.aclass }}</td>
+                        <td>{{ id.fa_mo }}</td>
+                        <td>{{ id.num }}</td>
+                        <td>
+                            {% if id.dead == True %}
+                                {{ "是" }}
+                             {% else %}
+                                {{ "否" }}
+                             {% endif %}
+                        </td>
+                        <td>
+                             {% if id.is_turn == True %}
+                                {{ "是" }}
+                             {% else %}
+                                {{ "否" }}
+                             {% endif %}
+                        </td>
+                        <td>{{ id.license }}</td>
+                        <td><font class="text-success">{{ id.clgroup }}</font></td>
+                        <td>
+                          <div class="btn-group">
+                            <a class="btn btn-xs btn-default" href="#!" title="编辑" data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>
+                            <a class="btn btn-xs btn-default" href="{% url 'greatadmin:delanimal' id.id %}" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+{#                <ul class="pagination">#}
+{#                  <li class="disabled"><span>«</span></li>#}
+{#                  <li class="active"><span>1</span></li>#}
+{#                  <li><a href="#1">2</a></li>#}
+{#                  <li><a href="#1">3</a></li>#}
+{#                  <li><a href="#1">4</a></li>#}
+{#                  <li class="disabled"><span>...</span></li>#}
+{#                  <li><a href="#!">10</a></li>#}
+{#                  <li><a href="#!">»</a></li>#}
+{#                </ul>#}
+                <ul class="pagination" id="pager">
+
+                {% if mess.has_previous %}
+                    {#  当前页的上一页按钮正常使用#}
+                    <li class="previous"><a href="/greatadmin/animalinfo?page={{ mess.previous_page_number }}">上一页</a></li>
+                {% else %}
+                    {# 当前页的不存在上一页时,上一页的按钮不可用#}
+                    <li class="previous disabled"><a href="#">上一页</a></li>
+                {% endif %}
+                {#上一页按钮结束#}
+                {# 页码开始#}
+                {% for num in paginator.page_range %}
+
+                    {% if num == currentPage %}
+                        <li class="item active"><a href="/greatadmin/animalinfo?page={{ num }}">{{ num }}</a></li>
+                    {% else %}
+                        <li class="item"><a href="/greatadmin/animalinfo?page={{ num }}">{{ num }}</a></li>
+
+                    {% endif %}
+                {% endfor %}
+                {#页码结束#}
+                {# 下一页按钮开始#}
+                {% if mess.has_next %}
+                    <li class="next"><a href="/greatadmin/animalinfo?page={{ mess.next_page_number }}">下一页</a></li>
+                {% else %}
+                    <li class="next disabled"><a href="#">下一页</a></li>
+                {% endif %}
+                {# 下一页按钮结束#}
+                </ul>
+       
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->
+
+{% block footjs %}
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
+<script src="{% static '/layer/layer.js' %}"></script>
+
+<script>
+var DOM = (document.getElementById) ? 1 : 0;
+
+        var NS4 = (document.layers) ? 1 : 0;
+
+        var IE4 = 0; if (document.all) { IE4 = 1; DOM = 0; }
+        var win = window;
+
+        var n = 0;
+        function findIt() {
+
+            if (document.getElementById("searchstr").value != "")
+
+                findInPage(document.getElementById("searchstr").value);
+
+        }
+
+        function findInPage(str) {
+
+            var txt, i, found;
+            if (str == "")
+
+                return false;
+            if (DOM) {
+
+                win.find(str, false, true);
+
+                return true;
+
+            }
+            if (NS4) {
+
+                if (!win.find(str))
+
+                    while (win.find(str, false, true))
+
+                        n++;
+
+                else
+
+                    n++;
+                if (n == 0)
+
+                    alert("未找到指定内容.");
+
+            }
+            if (IE4) {
+
+                txt = win.document.body.createTextRange();
+                for (i = 0; i <= n && (found = txt.findText(str)) != false; i++) {
+
+                    txt.moveStart("character", 1);
+
+                    txt.moveEnd("textedit");
+
+                }
+                if (found) {
+
+                    txt.moveStart("character", -1);
+
+                    txt.findText(str);
+
+                    txt.select();
+
+                    txt.scrollIntoView();
+
+                    n++;
+
+                } else {
+
+                    if (n > 0) {
+
+                        n = 0;
+
+                        findInPage(str);
+
+                    } else
+
+                        alert("未找到指定内容.");
+                }
+            }
+            return false;
+        }
+
+
+    function MultiDel(){
+            if(!confirm("确定删除这些吗?")){
+                return;
+            }
+            var cks=document.getElementsByName("ids[]");
+            var str = "";
+            //拼接所有的id
+            for(var i=0;i<cks.length;i++){
+                if(cks[i].checked){
+                    str+=cks[i].value+",";
+                }
+            }
+            //去掉字符串未尾的','
+            str=str.substring(0, str.length-1);
+            {#location.href='/oms_config/info_multi_del/multiDel?id='+str;#}
+            location.href='/greatadmin/info_multi_del?id='+str;
+        }
+
+    !function(){
+    //关于
+    $('#add').on('click', function(){
+      layer.ready(function(){
+      layer.open({
+        type: 2,
+        title: '动物信息录入',
+        maxmin: true,
+        area: ['800px', '500px'],
+        content: '{% url 'greatadmin:addanimaltwo' %}',
+        end: function(){
+          layer.tips('点击继续添加', '#add', {tips: 1})
+        }
+      });
+    });
+    });
+
+    }();
+</script>
+{% endblock footjs %}
+
+
+

@@ -1,0 +1,167 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-toolbar clearfix">
+                <form class="pull-right search-bar" method="get" action="#!" role="form">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <input type="hidden" name="search_field" id="search-field" value="title">
+                      <button class="btn btn-default dropdown-toggle" id="search-btn" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="false">
+                      标题 <span class="caret"></span>
+                      </button>
+                      <ul class="dropdown-menu">
+                        <li> <a tabindex="-1" href="javascript:void(0)" data-field="title">标题</a> </li>
+                        <li> <a tabindex="-1" href="javascript:void(0)" data-field="cat_name">栏目</a> </li>
+                      </ul>
+                    </div>
+                    <input type="text" class="form-control" value="" name="keyword" placeholder="请输入名称">
+                  </div>
+                </form>
+                <div class="toolbar-btn-action">
+                  <a class="btn btn-primary m-r-5" href="javascript:;" id="add"><i class="mdi mdi-plus"></i> 新增</a>
+
+                  <a class="btn btn-danger" href="#!"><i class="mdi mdi-window-close"></i> 删除</a>
+                </div>
+              </div>
+              <div class="card-body">
+                
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>
+                          <label class="lyear-checkbox checkbox-primary">
+                            <input type="checkbox" id="check-all"><span></span>
+                          </label>
+                        </th>
+                        <th>转出ID</th>
+                        <th>动物ID</th>
+                        <th>动物品种</th>
+                        <th>动物产地</th>
+                        <th>转至单位</th>
+                        <th>转出结果</th>
+                        <th>转出时间</th>
+                        <th>许可证</th>
+                        <th>状态</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for m in ms %}
+                      <tr>
+                        <td>
+                          <label class="lyear-checkbox checkbox-primary">
+                            <input type="checkbox" name="ids[]" value="1"><span></span>
+                          </label>
+                        </td>
+                        <td>{{ m.tiid.id }}</td>
+                        <td>{{ m.aid.id }}</td>
+                        <td>{{ m.aid.aclass }}</td>
+                        <td>
+                             {% if m.aid.address == '510811' %}
+                                {{ "四川广元" }}
+                             {% elif m.aid.address == '620105' %}
+                                {{ "甘肃兰州" }}
+                             {% elif m.aid.address == '610102' %}
+                                {{ "陕西西安" }}
+                             {% endif %}
+                        </td>
+                        <td>{{ m.tiid.sla_name }}</td>
+                        <td>
+                            {% if m.aid.is_turn == True %}
+                            {{ '成功转出' }}
+                            {% else %}
+                            {{ "出现问题" }}
+                            {% endif %}
+                        </td>
+                        <td>{{ m.tiid.create_time }}</td>
+                        <td>{{ m.aid.license }}</td>
+                        <td><font class="text-success">{{ m.tiid.user }}</font></td>
+                        <td>
+                          <div class="btn-group">
+                            <a class="btn btn-xs btn-default" href="#!" title="编辑" data-toggle="tooltip"><i class="mdi mdi-pencil"></i></a>
+                            <a class="btn btn-xs btn-default" href="#!" title="删除" data-toggle="tooltip"><i class="mdi mdi-window-close"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <ul class="pagination">
+                  <li class="disabled"><span>«</span></li>
+                  <li class="active"><span>1</span></li>
+{#                  <li><a href="#1">2</a></li>#}
+{#                  <li><a href="#1">3</a></li>#}
+{#                  <li><a href="#1">4</a></li>#}
+{#                  <li><a href="#1">5</a></li>#}
+{#                  <li><a href="#1">6</a></li>#}
+{#                  <li><a href="#1">7</a></li>#}
+{#                  <li><a href="#1">8</a></li>#}
+{#                  <li class="disabled"><span>...</span></li>#}
+{#                  <li><a href="#!">14452</a></li>#}
+{#                  <li><a href="#!">14453</a></li>#}
+                  <li><a href="#!">»</a></li>
+                </ul>
+       
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->
+
+{% block footjs %}
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
+<script src="{% static '/layer/layer.js' %}"></script>
+
+<script>
+    $(function(){
+    $('.search-bar .dropdown-menu a').click(function() {
+        var field = $(this).data('field') || '';
+        $('#search-field').val(field);
+        $('#search-btn').html($(this).text() + ' <span class="caret"></span>');
+    });
+    });
+
+    !function(){
+    //关于
+    $('#add').on('click', function(){
+      layer.ready(function(){
+      layer.open({
+        type: 2,
+        title: '转出信息录入',
+        maxmin: true,
+        area: ['800px', '500px'],
+        content: '{% url 'cultivation:addturn' %}',
+        end: function(){
+          layer.tips('点击继续添加', '#add', {tips: 1})
+        }
+      });
+    });
+    });
+
+    }();
+</script>
+{% endblock footjs %}
+
+
+

@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+    <!--左侧导航-->
+    {% block left %}
+    {% endblock left %}
+    <!--End 左侧导航-->
+
+    <!--头部信息-->
+    {% block header %}
+    <header class="lyear-layout-header">
+
+      <nav class="navbar navbar-default">
+        <div class="topbar">
+
+          <div class="topbar-left">
+            <span class="navbar-page-title">
+                {% block little %}
+                    销售信息添加
+                {% endblock %}
+            </span>
+          </div>
+
+        </div>
+      </nav>
+
+    </header>
+    {% endblock header %}
+    <!--End 头部信息-->
+    
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header"><h4>基本样式</h4></div>
+              <div class="card-body">
+                <strong style="color:red;">{{ msg }}</strong>
+                <form class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                    {% if user.is_authenticated %}
+                  <div class="form-group">
+                    <label class="col-xs-12">销售商家用户名</label>
+                    <div class="col-xs-12">
+                      <div class="radio">
+                        <label for="example-radio1">
+                          <input type="radio" id="example-radio1" name="name" value="{{ user.id }}" checked="checked" style="display:none;padding:0.2em 1em;border:1px solid #CCCCCC;color:#999;">
+                          {{ user.username }}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                    {% endif %}
+
+
+                  <div class="form-group has-info">
+                    <label class="col-xs-12" for="example-select">部位编号</label>
+                    <div class="col-xs-12">
+                      <select class="form-control" id="example-select" name="sid" size="1">
+                        <option value="">请选择</option>
+                        {% for s in sli %}
+                        <option value="{{ s.id }}">{{ s.aid.id }}动物的{{ s.sid.patch }}/编号：{{ s.id }}</option>
+                        {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group has-info">
+                    <label class="col-xs-12" for="example-text-input">单价</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input" name="price" placeholder="文本..">
+                      <div class="help-block">单位：/Kg</div>
+                    </div>
+                  </div>
+
+                  <div class="form-group has-info">
+                    <label class="col-xs-12" for="example-text-input">销售许可证</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input" name="license" placeholder="文本..">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <button class="btn btn-primary" type="submit">提交</button>
+                    </div>
+                  </div>
+                </form>
+                
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->

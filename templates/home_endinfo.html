@@ -1,0 +1,717 @@
+{% extends "base_page.html" %}
+{% load static %} {% static 'css/endinfo/style.min.css' %}
+
+{% block headcssjs %}
+<link href="{% static 'css/extra/jspxcms.css' %}" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="{% static 'css/endinfo/apiscorelist.css' %}"/>
+<script type="text/javascript"	src="{% static 'css/endinfo/gstools.js' %}"></script>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/endinfo/style.min.css' %}" rel="stylesheet">
+<script type="text/javascript" src="http://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=A-0GgN_CCAfXlJ6Xf52pvhgDPD2GzaelvmIfv9PoeajbKqfyAlT5cM4qbOcwcLmr9cDapx58iV3xmAFQowZkb0hY8lBb_VPPnLCShdQsLyQ" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="http://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cDovLzEyMy41Ny4zOS43MDoxMDAvbWVzc2FnZXdlYi9zZWNyZXRib2FyZC8"/></head>
+{% endblock headcssjs %}
+
+{% block location %}
+    溯源信息
+{% endblock location %}
+
+{% block title %}
+溯源信息
+{% endblock title %}
+
+{% block page %}
+           <div class="text"><p style="text-indent: 0em;"><span style="color: rgb(192, 0, 0);">
+                <body marginheight="7">
+                    <div class="notice_info">
+                        <div class="notice_info_head">肉类信息</div>
+                        <table class="notice_goods">
+                            <tbody><tr>
+                                <td style="width: 15%;">肉类名称：</td>
+                                <td style="width: 35%;">
+                                    {% if name == '1' %}
+                                    {{ "猪肉" }}
+                                    {% elif name == '2' %}
+                                    {{ "牛肉" }}
+                                    {% elif name == '3' %}
+                                    {{ "羊肉" }}
+                                    {% endif %}
+                                </td>
+                                <td style="width: 15%;">溯源码：</td>
+                                <td style="width: 35%;">{{ id }}</td>
+                            </tr>
+                            <tr>
+                                <td>品种</td>
+
+                                <td>{{ animal.aclass }}</td>
+
+                                <td>养殖企业</td>
+                                <td>{{ animal.clgroup.group }}</td>
+                            </tr>
+                            <tr>
+                                <td>屠宰企业</td>
+                                <td>{{ animal.slgroup.group }}</td>
+                                <td>销售企业</td>
+                                <td>{{ animal.shgroup.group }}</td>
+                            </tr>
+                            <tr>
+                                <td>产地</td>
+                                <td colspan="3">
+                             {% if animal.address == '510811' %}
+                                {{ "四川广元" }}
+                             {% elif animal.address == '620105' %}
+                                {{ "甘肃兰州" }}
+                             {% elif animal.address == '610102' %}
+                                {{ "陕西西安" }}
+                             {% endif %}
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+
+
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">养殖企业基本信息</div>
+                        <table class="notice_aptitude" id="foodform"><tbody>
+                        <tr>
+                            <td>名称</td>
+                            <td>经营许可证号</td>
+                            <td>地址</td>
+                            <td>联系方式</td>
+                        </tr><tr><td align="center">{{ animal.slgroup.group }}</td>
+                            <td align="center">{{ animal.license }}</td>
+                            <td align="center">{{ animal.clgroup.address }}</td>
+                            <td align="center">{{ animal.clgroup.tel }}</td>
+                        </tr></tbody></table>
+                    </div>
+
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">屠宰企业基本信息</div>
+                        <table class="notice_aptitude" id="foodform"><tbody>
+                        <tr>
+                            <td>名称</td>
+                            <td>经营许可证号</td>
+                            <td>地址</td>
+                            <td>联系方式</td>
+                        </tr><tr><td align="center">{{ animal.slgroup.group }}</td>
+                            <td align="center">{{ animal.license }}</td>
+                            <td align="center">{{ animal.slgroup.address }}</td>
+                            <td align="center">{{ animal.slgroup.tel }}</td>
+                        </tr></tbody></table>
+                    </div>
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">销售企业基本信息</div>
+                        <table class="notice_aptitude" id="foodform"><tbody>
+                        <tr>
+                            <td>名称</td>
+                            <td>经营许可证号</td>
+                            <td>地址</td>
+                            <td>联系方式</td>
+                        </tr><tr><td align="center">{{ animal.slgroup.group }}</td>
+                            <td align="center">{{ animal.license }}</td>
+                            <td align="center">{{ animal.shgroup.address }}</td>
+                            <td align="center">{{ animal.shgroup.tel }}</td>
+                        </tr></tbody></table>
+                    </div>
+
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">过程信息</div>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading0">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse0" aria-expanded="false" aria-controls="collapseTwo">
+                                                养殖企业相关流程
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapse0" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                                            <div class="panel-body">
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">饲养相关信息:</div>
+                                                </div>
+                                                {% for n in fc %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.饲养员：{{ n.fiid.user }}</li>
+                                                        <li>[时间：{{ n.fiid.create_time | date:"y年m月d日" }}。
+                                                        投喂饲料种类：{{ n.fiid.fid.factory }}公司旗下{{ n.fiid.fid.name }}饲料<饲料批号{{ n.fiid.fid.license }}>，投喂数量{{ n.fiid.use_num }}千克。
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">疫苗相关信息:</div>
+                                                </div>
+                                                {% for n in vc %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.疫苗接种员：{{ n.viid.user }}</li>
+                                                        <li>[时间：{{ n.viid.create_time | date:"y年m月d日" }}。
+                                                        接种疫苗或使用药物种类：{{ n.viid.vid.factory }}公司旗下{{ n.viid.vid.name }}产品<批号{{ n.viid.vid.license }}>，使用次数{{ n.viid.use_num }}剂次。
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">检疫相关信息:</div>
+                                                </div>
+                                                {% for n in qc %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.检疫记录员：{{ n.qiid.user }}</li>
+                                                        <li>[时间：{{ n.qiid.create_time | date:"y年m月d日" }}。
+                                                        {{ n.qiid.qua_team }}单位完成检疫检疫结果
+                                                            {% if n.qiid.qua_end == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">转出前往下一流程:</div>
+                                                </div>
+                                                {% for n in tc %}
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>养殖环节流程结束，操作员“{{ n.tiid.user }}”于{{ n.tiid.create_time | date:"y年m月d日" }}将家畜转出，转出地点{{ n.tiid.sla_name }}屠宰场，运输物流号为：{{ n.tiid.car_name }}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading1">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse1" aria-expanded="false" aria-controls="collapseTwo">
+                                                屠宰企业相关流程
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading1">
+                                            <div class="panel-body">
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">接收家畜</div>
+                                                </div>
+
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>{{ slsf.create_time }}操作员“{{ slsf.user }}”完成待宰家畜的收入</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">屠宰相关信息:</div>
+                                                </div>
+                                                {% for n in sls %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.屠宰负责员工：{{ n.user }}</li>
+                                                        <li>[时间{{ n.create_time }}。家畜{{ n.aid.id }}(该查询家畜)被屠宰分割为<{{ n.sid.patch }}>,检疫
+                                                            {% if n.safe == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}
+                                                            ,该屠宰企业许可证为{{ n.license }}
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+
+
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>{{ slsf.create_time | date:"y年m月d日" }}操作员“{{ slsf.user }}”完成待宰家畜转出</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading2">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse2" aria-expanded="false" aria-controls="collapseTwo">
+                                                销售企业相关流程
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                                            <div class="panel-body">
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">入库信息:</div>
+                                                </div>
+                                                {% for n in shsa %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.销售企业责员工：{{ n.user }}</li>
+                                                        <li>[家畜{{ n.aid.id }}(该查询家畜)被屠宰分割为<{{ n.sid.patch }}>,该部分检疫
+                                                            {% if n.safe == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}可以进入市场，
+                                                            于{{ n.update_time | date:"y年m月d日" }}在{{ n.user }}企业完成销售入库，进入销售企业进行销售]。
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">用户购买产品信息:</div>
+                                                </div>
+                                                {% for n in shs %}
+                                                <div class>
+                                                    <ul>
+                                                        <li><·>销售企业负责员工：{{ n.user }}</li>
+                                                        <li>
+                                                            您于{{ n.create_time }}购买了该块肉，购买的质量为{{ n.heavy }}千克，购买的单价为{{ n.price }}
+                                                        </li>
+                                                        <li>您购买的肉类食品自来{{ n.saiid.name.group }}养殖的
+                                                            {% if name == '1' %}
+                                                                {{ "（猪）" }}
+                                                            {% elif name == '2' %}
+                                                                {{ "（牛）" }}
+                                                            {% elif name == '3' %}
+                                                                {{ "（羊）" }}
+                                                            {% endif %}，
+
+                                                            产地
+                                                            {% if animal.address == '510811' %}
+                                                                {{ "（四川广元）" }}
+                                                            {% elif animal.address == '620105' %}
+                                                                {{ "（甘肃兰州）" }}
+                                                            {% elif animal.address == '610102' %}
+                                                                {{ "（陕西西安）" }}
+                                                            {% endif %}
+
+                                                            (家畜的编码{{ n.saiid.siid.aid.id }})的<{{ n.saiid.siid.sid.patch }}>部分,经检疫是
+                                                            {% if n.saiid.siid.safe == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}
+                                                            产品,该部分已于{{ n.update_time | date:"y年m月d日" }}完成入库进入销售阶段,屠宰后的整块进价为{{ n.saiid.price }}人民币每千克。
+                                                            </li>
+
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>感谢您使用本系统，祝您身体健康、生活愉快！</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+
+                </body>
+            </div>
+{% endblock page %}
+
+
+
+
+
+{% block mtitle %}
+溯源信息
+{% endblock mtitle %}
+
+{% block mpage %}
+           <div class="text"><p style="text-indent: 0em;"><span style="color: rgb(192, 0, 0);">
+                <body marginheight="7">
+                    <div class="notice_info">
+                        <div class="notice_info_head">肉类信息</div>
+                        <table class="notice_goods">
+                            <tbody><tr>
+                                <td style="width: 15%;">肉类名称：</td>
+                                <td style="width: 35%;">
+                                    {% if name == '1' %}
+                                    {{ "猪肉" }}
+                                    {% elif name == '2' %}
+                                    {{ "牛肉" }}
+                                    {% elif name == '3' %}
+                                    {{ "羊肉" }}
+                                    {% endif %}
+                                </td>
+                                <td style="width: 15%;">溯源码：</td>
+                                <td style="width: 35%;">{{ id }}</td>
+                            </tr>
+                            <tr>
+                                <td>品种</td>
+
+                                <td>{{ animal.aclass }}</td>
+
+                                <td>养殖企业</td>
+                                <td>{{ animal.clgroup }}</td>
+                            </tr>
+                            <tr>
+                                <td>屠宰企业</td>
+                                <td>{{ animal.slgroup }}</td>
+                                <td>销售企业</td>
+                                <td>{{ animal.shgroup }}</td>
+                            </tr>
+                            <tr>
+                                <td>产地</td>
+                                <td colspan="3">
+                             {% if animal.address == '510811' %}
+                                {{ "四川广元" }}
+                             {% elif animal.address == '620105' %}
+                                {{ "甘肃兰州" }}
+                             {% elif animal.address == '610102' %}
+                                {{ "陕西西安" }}
+                             {% endif %}
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    </div>
+
+
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">养殖企业基本信息</div>
+                        <table class="notice_aptitude" id="foodform"><tbody>
+                        <tr>
+                            <td>名称</td>
+                            <td>经营许可证号</td>
+                            <td>地址</td>
+                            <td>联系方式</td>
+                        </tr><tr><td align="center">{{ animal.slgroup }}</td>
+                            <td align="center">{{ animal.license }}</td>
+                            <td align="center">{{ animal.clgroup.address }}</td>
+                            <td align="center">{{ animal.clgroup.tel }}</td>
+                        </tr></tbody></table>
+                    </div>
+
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">屠宰企业基本信息</div>
+                        <table class="notice_aptitude" id="foodform"><tbody>
+                        <tr>
+                            <td>名称</td>
+                            <td>经营许可证号</td>
+                            <td>地址</td>
+                            <td>联系方式</td>
+                        </tr><tr><td align="center">{{ animal.slgroup }}</td>
+                            <td align="center">{{ animal.license }}</td>
+                            <td align="center">{{ animal.slgroup.address }}</td>
+                            <td align="center">{{ animal.slgroup.tel }}</td>
+                        </tr></tbody></table>
+                    </div>
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">销售企业基本信息</div>
+                        <table class="notice_aptitude" id="foodform"><tbody>
+                        <tr>
+                            <td>名称</td>
+                            <td>经营许可证号</td>
+                            <td>地址</td>
+                            <td>联系方式</td>
+                        </tr><tr><td align="center">{{ animal.slgroup }}</td>
+                            <td align="center">{{ animal.license }}</td>
+                            <td align="center">{{ animal.shgroup.address }}</td>
+                            <td align="center">{{ animal.shgroup.tel }}</td>
+                        </tr></tbody></table>
+                    </div>
+
+
+                    <div class="notice_info">
+                        <div class="notice_info_head">过程信息</div>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading3">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse3" aria-expanded="false" aria-controls="collapseTwo">
+                                                养殖企业相关流程
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapse3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading3">
+                                            <div class="panel-body">
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">饲养相关信息:</div>
+                                                </div>
+                                                {% for n in fc %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.饲养员：{{ n.fiid.user }}</li>
+                                                        <li>[时间：{{ n.fiid.create_time | date:"y年m月d日" }}。
+                                                        投喂饲料种类：{{ n.fiid.fid.factory }}公司旗下{{ n.fiid.fid.name }}饲料(饲料批号{{ n.fiid.fid.license }})，投喂数量{{ n.fiid.use_num }}千克。
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">疫苗相关信息:</div>
+                                                </div>
+                                                {% for n in vc %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.疫苗接种员：{{ n.viid.user }}</li>
+                                                        <li>[时间：{{ n.viid.create_time | date:"y年m月d日" }}。
+                                                        接种疫苗种类：{{ n.viid.fid.factory }}公司旗下{{ n.viid.vid.name }}疫苗(疫苗批号{{ n.viid.vid.license }})，接种次数{{ n.viid.use_num }}次。
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">检疫相关信息:</div>
+                                                </div>
+                                                {% for n in qc %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.检疫记录员：{{ n.qiid.user }}</li>
+                                                        <li>[时间：{{ n.qiid.create_time | date:"y年m月d日" }}。
+                                                        {{ n.qiid.qua_team }}单位完成检疫检疫结果
+                                                            {% if n.qiid.qua_end == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">转出前往下一流程:</div>
+                                                </div>
+                                                {% for n in tc %}
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>养殖环节流程结束，操作员“{{ n.tiid.user }}”于{{ n.tiid.create_time | date:"y年m月d日" }}将家畜转出，转出地点{{ n.tiid.sla_name }}屠宰场，运输物流号为：{{ n.tiid.car_name }}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading4">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse4" aria-expanded="false" aria-controls="collapseTwo">
+                                                屠宰企业相关流程
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapse4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading4">
+                                            <div class="panel-body">
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">接收家畜</div>
+                                                </div>
+
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>{{ slsf.create_time }}操作员“{{ slsf.user }}”完成待宰家畜的收入</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">屠宰相关信息:</div>
+                                                </div>
+                                                {% for n in sls %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.屠宰负责员工：{{ n.user }}</li>
+                                                        <li>[时间{{ n.create_time }}。家畜{{ n.aid.id }}(该查询家畜)被屠宰分割为<{{ n.sid.patch }}>,检疫
+                                                            {% if n.safe == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}
+                                                            ,该屠宰企业许可证为{{ n.license }}
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+
+
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>{{ slsf.create_time | date:"y年m月d日" }}操作员“{{ slsf.user }}”完成待宰家畜转出</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                                    <div class="panel panel-cyan">
+                                        <div class="panel-heading" role="tab" id="heading5">
+                                            <h4 class="panel-title">
+                                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse5" aria-expanded="false" aria-controls="collapseTwo">
+                                                销售企业相关流程
+                                                </a>
+                                            </h4>
+                                        </div>
+
+                                        <div id="collapse5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading5">
+                                            <div class="panel-body">
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">入库信息:</div>
+                                                </div>
+                                                {% for n in shsa %}
+                                                <div class>
+                                                    <ul>
+                                                        <li>{{ forloop.counter }}.销售企业责员工：{{ n.user }}</li>
+                                                        <li>[家畜{{ n.aid.id }}(该查询家畜)被屠宰分割为<{{ n.sid.patch }}>,该部分检疫
+                                                            {% if n.safe == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}可以进入市场，
+                                                            于{{ n.update_time | date:"y年m月d日" }}在{{ n.user }}企业完成销售入库，进入销售企业进行销售]。
+                                                            ]</li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+
+                                                <div class="notice_info">
+                                                <div class="notice_info_head">用户购买产品信息:</div>
+                                                </div>
+                                                {% for n in shs %}
+                                                <div class>
+                                                    <ul>
+                                                        <li><·>销售企业负责员工：{{ n.user }}</li>
+                                                        <li>
+                                                            您于{{ n.create_time }}购买了该块肉，购买的质量为{{ n.heavy }}千克，购买的单价为{{ n.price }}
+                                                        </li>
+                                                        <li>您购买的肉类食品来自家畜
+                                                            {% if name == '1' %}
+                                                                {{ "（猪）" }}
+                                                            {% elif name == '2' %}
+                                                                {{ "（牛）" }}
+                                                            {% elif name == '3' %}
+                                                                {{ "（羊）" }}
+                                                            {% endif %}
+
+                                                            产地
+                                                            {% if animal.address == '510811' %}
+                                                                {{ "（四川广元）" }}
+                                                            {% elif animal.address == '620105' %}
+                                                                {{ "（甘肃兰州）" }}
+                                                            {% elif animal.address == '610102' %}
+                                                                {{ "（陕西西安）" }}
+                                                            {% endif %}
+
+                                                            (家畜的编码{{ n.saiid.siid.aid.id }})的<{{ n.saiid.siid.sid.patch }}>部分,经检疫是
+                                                            {% if n.saiid.siid.safe == True %}
+                                                                {{ "(合格)" }}
+                                                            {% else %}
+                                                                {{ "(不合格)" }}
+                                                            {% endif %}
+                                                            产品,该部分已于{{ n.update_time | date:"y年m月d日" }}完成入库进入销售阶段,屠宰后的整块进价为{{ n.saiid.price }}人民币每千克。
+                                                            </li>
+                                                        <li>
+                                                            您于{{ n.create_time }}购买了该块肉，购买的质量为{{ n.heavy }}千克，购买的单价为{{ n.price }}
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                {% endfor %}
+
+
+                                                <div class>
+                                                    <table class="notice_aptitude" id="foodform"><tbody>
+                                                        <tr>
+                                                            <td>感谢您使用本系统，祝您身体健康、生活愉快！</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+
+                                                </div>
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+
+                </body>
+            </div>
+{% endblock mpage %}

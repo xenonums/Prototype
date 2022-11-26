@@ -1,0 +1,1120 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  class="no-js" lang="zh-CN">
+<!-- 电脑页面默认不显示 -->
+<script type="text/javascript" src="http://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=33OB7TEnXG_KR_suRJBu7pds2Na_uxA-KNPZIW1Aa33xwrNeCg1kuiic3IwG2f6f" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="http://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cDovL3d3dy5zY3RyYWNlLm9yZy96c2NwLz8"/><div id="computer_side" style="display: none">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" />
+<title>NBS肉类食品质量追溯平台</title>
+<link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/buttons.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/silder.css' %}" rel="stylesheet" type="text/css">
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+{% block headcss %}
+<style>
+.wechat-modal{
+display:none;
+position:absolute;
+        right: 477px;
+    top: 653px;
+z-index:9999;
+}
+
+.ui-tabs {
+        padding: 0!important;
+    }
+    
+    .ui-corner-all,
+    .ui-corner-bottom,
+    .ui-corner-right,
+    .ui-corner-br {
+        border-bottom-right-radius: 0px!important;
+    }
+    
+    .ui-corner-all,
+    .ui-corner-bottom,
+    .ui-corner-left,
+    .ui-corner-bl {
+        border-bottom-left-radius: 0px!important;
+    }
+    
+    #tabs ul {
+        padding-top: 6px;
+
+        background:-moz-linear-gradient(top, #00b6ea, #009ec3);  
+        background:-webkit-gradient(linear, 0 0, 0 bottom, from(#00b6ea), to(#009ec3));  
+        background:-o-linear-gradient(top, #00b6ea,  #009ec3); 
+        background: linear-gradient(to bottom, #00b6ea, #009ec3);
+        filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#00b6ea,endcolorstr=#009ec3,gradientType=1);
+    -ms-filter:alpha(opacity=100 finishopacity=50 style=1 startx=0,starty=0,finishx=0,finishy=150) progid:DXImageTransform.Microsoft.gradient(startcolorstr=#00b6ea,endcolorstr=#009ec3,gradientType=1);
+    }
+    
+    .ui-widget.ui-widget-content {
+        border: 1px solid #00b6ea;
+    }
+    
+    .ui-widget-header {
+        border: none;
+    }
+    
+    #tabs ul .more {
+        position: relative;
+        left: 32px;
+        top: 5px;
+        color: white;
+    }
+    
+    .more_bg{
+      display:none;
+    }
+.ui-tabs .ui-tabs-panel{
+padding:0px;
+}
+
+#tabs-1{
+    padding-top: 7px;
+    padding-bottom:12px;
+}
+#tabs-2{
+    padding-top: 7px;
+    padding-bottom:12px;
+}
+#table2 {
+        margin-top: 4px;
+    }
+
+    .antiForm{
+    	text-align:center;
+        margin-top:4px;
+    }
+.anti-search-div{
+ margin-top:4px;
+
+}
+
+.ui-state-default{
+background:none!important;
+	border:none!important;
+  }
+
+.ui-state-default a{
+color:white!important;
+
+}
+.ui-state-active{
+    background: #fff!important;
+    font-weight: normal!important;
+    
+}
+
+.ui-state-active a{
+color: #2b2b2b!important;
+
+}
+
+img {
+  border-width: 0;
+}
+
+</style>
+
+{% endblock headcss %}
+
+<script language="javascript" type="text/javascript" src="{% static 'js/jquery.min.js' %}" ></script>
+<script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery-placeholder.min.js' %}"></script>
+<script language="javascript" type="text/javascript" src="{% static 'js/jqFancyTransitions.min.js' %}" ></script>
+
+<script type="text/javascript" src="{% static 'js/silder.min.js' %}"></script>
+<script language="javascript" type="text/javascript" src="{% static 'js/YLMarquee.js' %}"></script>
+<script language="javascript" type="text/javascript" src="{% static 'js/common.js' %}"></script>
+
+
+<link href="{% static 'js/jquery.slideBox.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{% static 'js/jquery.slideBox.js' %}"></script>
+
+{% block headjs %}
+<script type="text/javascript">
+   var antiResultDlg;
+
+  function showWeChat(){
+        $(".wechat-modal").show();
+      }
+
+      function hideWeChat(){
+        $(".wechat-modal").hide();
+      }
+
+      function searchStandard(){
+          window.open("http://118.114.77.13/bzwxup/stdsearch.jsp?flag=1&CnName="+$("#standardName").val()+"&orgType=0&isForce=0","_blank");
+      }
+
+
+function searchAnticode(){
+    if($("#antiCode").val()==''){
+return;
+}
+    $.ajax({
+        type:'post',
+	url: '/fwm/mobile/anti/query?code=' + $("#antiCode").val(),
+	success: function(data){
+	    if(data.success=='0'){
+                $('#dlg_result').html('您输入的防伪码不存在！');
+            }else{
+                if (data.result.queryCnt == 0) {
+                            $('#dlg_result').html('防伪码存在，且是第一次查询', {title: '查询结果'});
+                        } else {
+                            $('#dlg_result').html('防伪码是第' + (data.result.queryCnt + 1) + "次查询，上次查询时间：" + data.result.lastQueryTime, {title: '查询结果'});
+                        }
+            }
+	}
+     });
+     antiResultDlg.dialog( "open" );
+}
+    function productcodesubmit(){
+        var productCode = document.getElementById('productCode').value;
+        {#aid = productCode.slice(4);#}
+        {#sid = productCode.slice(5);#}
+
+        $.ajax({
+            type:"POST",
+            dataType: "json",
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+                {#"X-CSRFToken":$.cookie("csrftoken"),#}
+
+            },
+            {#csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val(), // 添加这一句#}
+            data: {productCode:productCode},
+            url: "{% url 'homeindex:searchtraceability' %}",
+            success: function(datas){
+                alert(datas.msg)
+                if (datas.msg == "溯源码存在") {
+                    window.location.replace("/homeindex/traceabilityinfo"+datas.aid+"+"+datas.sid)
+                    {#window.location.replace("www.baidu.com")#}
+                    }
+            },
+            error: function(){
+                alert("未知错误");
+            }
+        });
+    }
+     function login(){
+     /**
+     var  url="";
+     $.ajax({
+				url : "/zscp/arear/testusersiteid.do",
+				type : 'POST',
+				data : $("#validForm").serialize(),
+				error : function() {
+
+					alert("error");
+
+				},
+				success : function(data) {
+		alert(1);
+			alert(data)
+			
+			if(data==27){
+			
+			}
+				}
+			});
+			**/
+     
+      // document.foreform.action="/zscp/area/login.area";
+       
+     $("#validForm").submit() ;
+   }
+   
+   
+  
+   
+</script>
+
+<script type="text/javascript">
+   function show(op){
+ 
+   document.form.productCode.value = document.form.productCode.value + op
+   }
+
+  function theclear(){
+   document.form.productCode.value = '';
+   
+   }
+function back(){
+   var s=document.form.productCode.value;
+
+   s=s.substring(0,s.length-1)
+
+   document.form.productCode.value =s;
+   
+   }
+</script>
+<script> 
+jQuery(function($){ 
+    $('#demo3').slideBox({ 
+        duration : 0.3,//滚动持续时间，单位：秒 
+        easing : 'linear',//swing,linear//滚动特效 
+        delay : 5,//滚动延迟时间，单位：秒 
+        hideClickBar : true,//不自动隐藏点选按键 
+        clickBarRadius : 10 
+    }); 
+$('input, textarea').placeholder();
+
+$("#tabs").tabs(
+    {
+       activate: function( event, ui ) {
+           if(ui.newTab[0].id=='tab1'){
+                $('.more_gg').show();
+                $('.more_bg').hide();
+           }else{
+                $('.more_bg').show();
+                $('.more_gg').hide();
+           }
+       }
+    }
+);
+
+antiResultDlg = $("#dlg_anticode_result" ).dialog({
+      modal: true,
+      autoOpen:false,
+      buttons: [{
+        text: "确定",
+        click: function() {
+          $( this ).dialog( "close" );
+        }
+      }]
+    });
+
+}); 
+
+
+
+
+function enterIn(evt){
+	  var evt=evt?evt:(window.event?window.event:null);//兼容IE和FF
+	  if (evt.keyCode==13){
+	  document.getElementById("validForm").submit();
+	}
+	}
+	
+function checkCaptcha(){
+	if($("#captchainput").val() == ""){
+		alert("请输入验证码!");
+		return false;
+	}else{
+		var b = checkC();
+		if(b == "false"){
+			alert("验证码错误！");
+			$("#auther").attr('src','/zscp/captcha.servlet?d='+new Date()*1);
+			return false;
+		}else{
+			return true;
+		}
+		
+	}
+	
+}
+
+function checkC(){
+var temp;
+$.ajax({
+		url:'checkC.jspx',
+		data :{captcha:$('#captchainput').val()},
+		type :'post',
+		async : false,
+		success : function(data){
+			if(data == "false"){
+				temp = "false";
+			}else{
+				temp = "true";
+			}
+		}
+	})
+return temp;
+}
+
+$(function() {
+	$("#auther").attr('src','/zscp/captcha.servlet?d='+new Date()*1);
+	$("#nextone").click(function(){
+			$("#auther").attr('src','/zscp/captcha.servlet?d='+new Date()*1);
+	});
+});
+
+$(function () {
+	// Slideshow 
+	$("#slider").responsiveSlides({
+		auto: true,
+		pager: false,
+		nav: true,
+		speed: 500,
+		timeout:4000,
+		pager: true, 
+		pauseControls: true,
+		namespace: "callbacks"
+	});
+});
+</script>
+{% endblock headjs %}
+
+{% block headcss2 %}
+<style type="text/css">
+#fixation_top_left
+{
+	position:absolute;
+	z-index:9999;
+	text-align: center;
+}
+#fixation_top_right
+{
+	position:absolute;
+	z-index:9999;
+	text-align: center;
+}
+#mydiv2_left{
+	position: fixed;
+	top: 50%;
+	left:0px;
+	margin-left: 10px;
+	margin-top: -75px;
+}
+#mydiv_left{
+	width: 110px;
+	height: 358px;
+	position:relative;
+	background: #eee;
+	border: 5px solid #8bd6fc;
+	padding:10px;
+
+}
+#mydiv1_left{
+	height: 16px;
+	margin:0px;
+	padding:0px;
+}
+#mydiv2_right{
+	position: fixed;
+	top: 50%;
+	right:0px;
+	margin-left: 10px;
+	margin-top: -75px;
+}
+#mydiv_left{
+	width: 110px;
+	height: 358px;
+	position:relative;
+	background: #eee;
+	border: 5px solid #8bd6fc;
+	padding:10px;
+	background: url({% static "images/new2021.jpg" %} );
+}
+#mydiv_right{
+	width: 110px;
+	height: 358px;
+	position:relative;
+	background: #eee;
+	border: 5px solid #8bd6fc;
+	padding:10px;
+	background: url({% static "images/new2022.png" %});
+}
+#mydiv1_right{
+	height: 16px;
+	margin:0px;
+	padding:0px;
+}
+</style>
+{% endblock headcss2 %}
+
+{% block headjs2 %}
+<script type="text/javascript">
+		//js和css动态加载
+	 var ua = navigator.userAgent;
+	 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),isAndroid = ua.match(/(Android)\s+([\d.]+)/),isMobile = isIphone || isAndroid;
+	 var head = document.getElementsByTagName('HEAD').item(0);
+	 var style = document.createElement('link');
+	 var fileref = document.createElement('script');
+     fileref.setAttribute('type','text/javascript');
+     style.type = 'text/css';
+	 style.rel = 'stylesheet';
+	 if(isMobile){//如果是手机则加载botstrap.min否则不加载
+    	 style.href = '{% static 'css/bootstrap.min.css' %}';
+     }else{
+    	 fileref.setAttribute('src','{% static 'js/pic_scroll.js' %}');
+    	 style.href = '{% static 'css/scszs.css' %}';
+     }
+	 head.appendChild(style);
+	 head.appendChild(fileref);
+	</script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+	 var ua = navigator.userAgent;
+	 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),isAndroid = ua.match(/(Android)\s+([\d.]+)/),isMobile = isIphone || isAndroid;
+	 var head = document.getElementsByTagName('HEAD').item(0);
+	 var style = document.createElement('link');
+	 style.rel = 'stylesheet';
+	 style.type = 'text/css';
+	 if(isMobile){//如果是手机则加载botstrap.min否则不加载
+    	 style.href = '{% static 'css/bootstrap.min.css' %}';
+     }else{
+    	 style.href = '{% static 'css/scszs.css' %}';
+     }
+	 head.appendChild(style);
+	</script>
+
+<script type="text/javascript">
+
+ function searchsubmit(){
+       $("#searchForm").submit() ;
+   }
+
+</script>
+{% endblock headjs2 %}
+
+<div class="top w1002 center">
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="margin: auto; ">
+  <tr>
+    <td>
+<!--
+<object data="/zscp/template/33/bluewise/images/banner.swf" type="application/x-shockwave-flash" width="1002" height="225">
+<param name="movie" value="/zscp/template/33/bluewise/images/banner.swf" />
+<param name="wmode" value="transparent"/>
+</object>
+-->
+<img src="{% static 'images/zs-1.jpg' %}"/>
+    </td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="margin: auto; ">
+  <tr>
+    <td height="41" background="{% static 'images/scszspic_1.png' %}"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="margin-left:0px;">
+      <tr>
+          {% block line %}
+        <td height="41" align="center" class="dhyh"
+				bgcolor="#184B83"
+        	>&nbsp;&nbsp;<a href="/homeindex">首页</a>&nbsp;&nbsp;</td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homenews" >新闻资讯</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/hometraceability" >在线追溯</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homelegal" >政策法规</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homenotice" >通知公告</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeexposure" >曝光预警</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homegroup" >企业展示</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeknow" >知识讲堂</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeintroduction" >平台介绍</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homecomm" >联系我们</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+            {% endblock line %}
+        </tr>
+    </table></td>
+  </tr>
+</table>
+
+  <form  id="searchForm" name="formsearch" action="{% url "homeindex:search" %}" >
+
+
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+  <tr>
+    <td height="33" bgcolor="#FFFFFF"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td width="30"><img src="{% static 'images/scszspic_3.png' %}" width="10" height="15" /></td>
+        <td width="670"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="lanf12">
+          <tr>
+            <td class="f12l"><marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="4" scrolldelay="20" direction="left" width="100%">
+		          {% for n in newest %}
+		          · <a href="{% url 'homeindex:opennews' n.id %}" target="_blank">{{ n.title }}</a>　　&nbsp;&nbsp;&nbsp;
+                  {% endfor %}
+
+            </marquee></td>
+          </tr>
+        </table></td>
+        <td><table width="95%" border="0" align="right" cellpadding="0" cellspacing="0" class="f12">
+          <tr>
+            <td width="25" align="center"><img src="{% static 'images/scszspic_4.png' %}" width="16" height="16" /></td>
+            <td>站内搜索</td>
+            <td>
+          
+            <input  name="wd" type="text" class="search-keyword" id="search-keyword"style="width:115px; height:16px " />
+          
+            </td>
+            <td><img class="search-submit" onclick="searchsubmit()" src="{% static 'images/scszspic_5.png' %}" width="47" height="21"  style="cursor:pointer"/></td>
+            </tr>
+
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td height="1" bgcolor="#e1e1e1"></td>
+  </tr>
+</table>
+{% block body %}
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+  </form>
+</div>
+
+<div id="fixation_top_left">
+	<div id="mydiv2_left">
+		<div id="mydiv_left">
+		<div id="mydiv1_left">
+		<input type="image" style="float: right;cursor: pointer;width: 16px;height: 16px;" src="{% static 'images/cancel.png' %}" onclick="$('#fixation_top_left').hide();"/>
+		</div>
+		<div onclick="window.open('http://www.scis.net.cn/uniapp-trace')" style="width:110px;height:350px;cursor:pointer"></div>
+		</div>
+	</div>
+</div>
+
+<div id="fixation_top_right">
+	<div id="mydiv2_right">
+		<div id="mydiv_right">
+		<div id="mydiv1_right">
+		<input type="image" style="float: right;cursor: pointer;width: 16px;height: 16px;" src="{% static 'images/cancel.png' %}" onclick="$('#fixation_top_right').hide();"/>
+		</div>
+		<div onclick="window.open('#')" style="width:110px;height:350px;cursor:pointer"></div>
+		</div>
+	</div>
+</div>
+
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12" style="height: 239px">
+  <tr>
+    <td width="5"></td>
+    <td width="343" valign="top">
+
+    
+
+ <div id="demo3" class="slideBox">
+  <ul class="items">
+      {% block head %}
+
+      {% endblock head %}
+  </ul>
+</div> 
+    </td>
+    <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="3" bgcolor="#25b9e2"></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+          <tr>
+            <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+              <tr>
+                <td>新闻资讯</td>
+                <td align="right" class="f12l2"><a href="/homeindex/homenews" target="_blank">[更多]</a></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+      <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="10"></td>
+        </tr>
+      </table>
+      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+
+          {% block headnews %}
+
+            {% endblock headnews %}
+      </table></td>
+    {% block two %}
+
+  {% endblock two %}
+    <td width="5"></td>
+  </tr>
+</table>
+
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+
+ <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+  <tr>
+    <!-- <td><img src=""  width="1002" height="90" /></td> -->
+<td>
+ <div class="callbacks_container">
+	<ul class="rslides" id="slider">
+    {% block middlehead %}
+
+   {% endblock middlehead %}
+	</ul>
+</div>
+</td>
+  </tr>
+</table>
+
+
+
+
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td width="5"></td>
+    <td width="343" valign="top"><table width="337" border="0" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="3" bgcolor="#25b9e2"></td>
+      </tr>
+      <tr>
+        <td>
+       <!--  <div>
+    <script type="text/javascript" src="/zscp/login_ajax.jspx"></script>
+   </div>-->
+     
+{% block loginandtrace %}
+
+{% endblock loginandtrace %}
+
+
+{% block groupshow %}
+
+{% endblock groupshow %}
+
+{% block threepart %}
+
+{% endblock threepart %}
+
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td><table width="992" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+      <tr>
+        <td height="120" bgcolor="#FFFFFF"><table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+          <tr>
+            <td width="90">友情链接</td>
+            <td><table width="100%" border="0" cellpadding="5" cellspacing="0" class="f12">
+              <tr>
+                <td><a style="text-decoration: none;" href="http://scjgj.sc.gov.cn/" target="_blank"><img src="{% static 'images/scszspic_28.png' %}" width="180" height="47"  style="cursor:pointer;border:0px;"/></a></td>
+                <td><a style="text-decoration: none" href="http://www.ancc.org.cn/" target="_blank"> <img src="{% static 'images/scszspic_29.jpg' %}" width="180" height="47"  style="cursor:pointer;border:0px;"/></a></td>
+                <td><a style="text-decoration: none" href="http://www.chinatrace.org/" target="_blank"> <img src="{% static 'images/scszspic_33.jpg' %}" width="180" height="47"  style="cursor:pointer;border:0px;"/></a></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="background-color: red" >
+  <tr>
+    <td height="1" bgcolor="#c5d2df"></td>
+  </tr>
+  <tr>
+    <td height="110" align="center" bgcolor="#ebeff1" class="f12en">知其出处，食之有数！ <br />
+    Copyright &copy; 2022 NBS肉类食品质量追溯平台<br/><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F76db413114396733b6d3c6271c33aee3' type='text/javascript'%3E%3C/script%3E"));
+</script> </td>
+  </tr>
+</table>
+
+
+
+
+
+
+
+
+</body>
+</div>
+
+<!-- 手机版页面默认隐藏 -->
+<div id ="mobile_terminal" style="display: none">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="renderer" content="webkit">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=yes" name="viewport" />
+  <title>NBS肉类食品质量追溯平台</title>
+  <meta name="keywords" content="NBS肉类食品质量追溯平台">
+  <meta name="description" content="NBS肉类食品质量追溯平台">
+  <!-- <script type="text/javascript" src="/zscp/template/33/bluewise/js/jquery-1.11.0.min.js"></script> -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+	<link href="{% static 'css/datouwang.css' %}" rel="stylesheet" type="text/css" />
+ <script src="{% static 'js/modernizr.min.js' %}"></script>
+  <!--[if lt IE 9]>
+    <script src="/zscp/template/33/bluewise/_files/js/vendor/respond.min.js"></script>
+  <![endif]-->
+  
+	<script type="text/javascript" src="{% static 'js/koala.min.1.5.js' %}"></script>
+	
+		<script type="text/javascript">
+   function loginphoto(){
+       $("#validFormphoto").submit() ;
+       //productcodesubmit
+   }
+    function mproductcodesubmit(){
+        var productCode = document.getElementById('mproductCode').value;
+        {#aid = productCode.slice(4);#}
+        {#sid = productCode.slice(5);#}
+
+        $.ajax({
+            type:"POST",
+            dataType: "json",
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+                {#"X-CSRFToken":$.cookie("csrftoken"),#}
+
+            },
+            {#csrfmiddlewaretoken:$('[name="csrfmiddlewaretoken"]').val(), // 添加这一句#}
+            data: {productCode:productCode},
+            url: "{% url 'homeindex:searchtraceability' %}",
+            success: function(datas){
+                alert(datas.msg)
+                if (datas.msg == "溯源码存在") {
+                    window.location.replace("/homeindex/traceabilityinfo"+datas.aid+"+"+datas.sid)
+                    {#window.location.replace("www.baidu.com")#}
+                    }
+            },
+            error: function(){
+                alert("未知错误");
+            }
+        });
+    }
+    
+   
+</script>
+<script type="text/javascript">
+   function enterIn(evt){
+	  var evt=evt?evt:(window.event?window.event:null);//兼容IE和FF
+	  if (evt.keyCode==13){
+	  document.getElementById("validFormphoto").submit();
+	}
+	}
+
+
+
+</script>
+
+<style type="text/css" >
+#div_photo1{
+	margin:0 auto
+	
+}
+.media-body{
+}
+</style>
+	
+</head>
+<div>
+<!--[if lt IE 8]><p class="browserupgrade">您正在使用<strong>过时</strong>的浏览器，请更新您的浏览器。</p><![endif]-->
+<nav class="navbar navbar-default" style="margin-bottom:0;">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/homeindex">NBS肉类食品质量追溯平台</a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        {% block mline %}
+
+        {% endblock mline %}
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<!-- 手机图片轮播 -->
+<div id="fsD1" class="focus" style="width: 100%;">  
+    <div id="D1pic1" class="fPic">
+        {% for n in head %}
+         <div class="fcon" style="display: none;">
+         <a  href="{% url 'homeindex:opennews' n.id %}" ><img src="{{ n.image.url }}" style="opacity: 1; "></a>
+            <span class="shadow"><a  href="#" >{{ n.title | slice:":9" }}...</a></span>
+          </div>
+        {% endfor %}
+    <div class="fbg">
+        {% for n in head %}
+    <div class="D1fBt" id="D1fBt">
+
+        <a href="javascript:void(0)" hidefocus="true" target="_self" class=""><i>{{ forloop.counter }}</i></a>
+    </div>
+        {% endfor %}
+    </div>
+   <span class="prev"></span>
+    <span class="next"></span>    
+</div> 
+<br/>
+</div> 
+<script type="text/javascript">
+	Qfast.add('widgets', { path: "{% static "js/terminator2.2.min.js" %}", type: "js", requires: ['fx'] });
+	Qfast(false, 'widgets', function () {
+		K.tabs({
+			id: 'fsD1',   //焦点图包裹id  
+			conId: "D1pic1",  //** 大图域包裹id  
+			tabId:"D1fBt",  
+			tabTn:"a",
+			conCn: '.fcon', //** 大图域配置class       
+			auto: 1,   //自动播放 1或0
+			effect: 'fade',   //效果配置
+			eType: 'click', //** 鼠标事件
+			pageBt:true,//是否有按钮切换页码
+			bns: ['.prev', '.next'],//** 前后按钮配置class                          
+			interval: 4000  //** 停顿时间  
+		}) 
+	})  
+</script>
+<div style="float:right;padding:15px ">
+<p><a href="/greatadmin/">登陆</a></p>
+</div>
+
+<div class="container" id="div_photo1">
+ <form id="form_photo"  action="" method="post">
+            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+            	
+            	<h3><a href="node/211.jspx">追溯码查询</a></h3>
+              <tr>
+                <td><input onkeyup="value=value.replace(/[^\d]/g,'')" id="mproductCode" name="textfield3" type="text" style="width:100%;height:30px;color:#7a7373;font-size:12px;line-height:30px;padding-left:10px;" placeholder="请输入产品追溯码..."/><input name ="textfield3photo" style="display:none" value="1"/></td>
+               <td width="86" align="right"><button type="button" onclick="mproductcodesubmit()" style="width:70px;height:30px;cursor:pointer">查询</button></td>
+             
+              </tr>
+            </table>
+            </form>
+</div>
+<!-- 手机新闻页面 -->
+<div class="container">
+  <h3 style="padding:8px 0;"><a href="/homeindex/homenews/">新闻资讯</a></h3>
+  <div style="margin-top:10px;">
+    <div class="media" style="border-bottom:1px solid #ccc;padding-bottom:10px;">
+        {% for n in mnews %}
+      <div class="media-left">
+        <a href="{% url 'homeindex:opennews' n.id %}"></a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading ff-yh"><a href="{% url 'homeindex:opennews' n.id %}" style="color:#333;">{{ n.title | slice:":12" }}...</a></h4>
+        <div style="color:#666;">{{ n.gcontent | slice:":12" }}</div>
+      </div>
+    </div>
+      {% endfor %}
+
+
+
+  </div>
+</div>
+
+<!-- 手机通知公告页面 -->
+<div class="container">
+  <h3 style="padding:8px 0;"><a href="/homeindex/homenotice">通知公告</a></h3>
+  <div style="margin-top:10px;">
+        {% for n in notice %}
+        <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+            <tr>
+                <td class="f12l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title | slice:":14"}}...</a></td>
+            </tr>
+        </table>
+      {% endfor %}
+         
+  </div>
+</div>
+<!-- 曝光预警 -->
+<div class="container">
+  <h3 style="padding:8px 0;"><a href="/homeindex/homeexposure">曝光预警</a></h3>
+  <div style="margin-top:10px;">
+  {% for n in exposure %}
+        <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+            <tr>
+                <td class="f12l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title | slice:":14"}}...</a></td>
+            </tr>
+        </table>
+      {% endfor %}
+
+
+  </div>
+</div>
+
+
+<!-- 手机企业展示页面 -->
+<div class="container">
+  <h3 style="padding:8px 0;"><a href="/homeindex/homegroup">企业展示</a></h3>
+  <div style="margin-top:10px;">
+    <div class="media" style="border-bottom:1px solid #ccc;padding-bottom:10px;">
+    {% for n in group %}
+      <div class="media-left">
+        <a href="{% url 'homeindex:opennews' n.id %}" target="_blank"><img class="media-object" src="{{ n.image.url }}" style="width:100px;height:70px;"></a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading ff-yh"><a href="{% url 'homeindex:opennews' n.id %}" style="color:#333;">{{ n.title }}</a></h4>
+        <div style="color:#666;">{{ n.gcontent | safe | slice:":50" }}...</div>
+      </div>
+    </div>
+  {% endfor %}
+  </div>
+</div>
+
+
+<!-- 手机政策法规页面 -->
+<div class="container">
+  <h3 style="padding:8px 0;"><a href="/homeindex/homelegal/">政策法规</a></h3>
+  <div style="margin-top:10px;">
+      {% for n in legal %}
+           <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+        <tr>
+          <td class="f14l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title }}</a></td>
+        </tr>
+      </table>
+        {% endfor %}
+  </div>
+</div>
+
+<!-- 手机知识讲堂页面 -->
+ <div class="container">
+  <h3 style="padding:8px 0;"><a href="node/317.jspx">知识讲堂</a></h3>
+  <div style="margin-top:10px;">
+      {% for n in know %}
+           <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+        <tr>
+          <td class="f14l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title }}</a></td>
+        </tr>
+      </table>
+        {% endfor %}
+  </div>
+</div> 
+<!-- 手机联系地址页面 -->
+ <div class="container">
+  <h3 style="padding:8px 0;"><a href="">联系地址</a></h3>
+  <div style="margin-top:10px;">
+
+				<p>地址：四川省广元市昭化区</p>
+                <p>电话：18709319224</p>
+                <p>传真：xxx-xxxxxx</p>
+                <p>邮箱：406508998@qq.com</p>
+                 <p>咨询：<a href="http://wpa.qq.com/msgrd?v=3&uin=406508998&site=qq&menu=yes" title="406508998"  target="_blank"><img src="http://wpa.qq.com/pa?p=2:2589725194:52" width="21" height="21" border="0" align="absmiddle" /></a>在线咨询</p>
+                            
+  </div>
+</div> 
+<div class="container">
+  <h3 style="padding:8px 0;"><a>友情链接</a></h3>
+   <p>
+                <a style="text-decoration: none;" href="http://www.sczj.gov.cn/" target="_blank"><img src="{% static 'images/scszspic_28.png' %}" width="160" height="47"  style="cursor:pointer;border:0px;"/></a>
+                <a style="text-decoration: none" href="http://www.ancc.org.cn/" target="_blank"> <img src="{% static 'images/scszspic_29.jpg' %}" width="160" height="47"  style="cursor:pointer;border:0px;"/></a>
+     </p>
+              <p>
+              </p>
+              <p>
+
+                <a style="text-decoration: none" href="http://www.chinatrace.org/" target="_blank"> <img src="{% static 'images/scszspic_33.jpg' %}" width="160" height="47"  style="cursor:pointer;border:0px;"/></a>
+                </p>
+              <p>
+
+                
+              </p>  
+  </div>
+
+
+{% endblock body %}
+<footer class="container" style="font-size:12px;padding-top:10px;margin-top:10px;background-color:#eee;">
+	<p height="110" align="center" bgcolor="#ebeff1" class="f12en">知其出处，食之有数！<br />
+    Copyright &copy; 2022 NBS肉类食品质量追溯平台<br/><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F76db413114396733b6d3c6271c33aee3' type='text/javascript'%3E%3C/script%3E"));
+</script> </p>
+
+
+</footer>
+
+<script src="{% static "js/jquery.min.js" %}"></script>
+<script src="{% static "js/bootstrap.min.js" %}"></script>
+<script src="{% static "js/plugins.js" %}"></script>
+<script src="{% static "js/main.js" %}"></script>
+</div>
+
+</body>
+  </div>
+
+
+</div>
+<script type="text/javascript">
+        var ua = navigator.userAgent;var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),isAndroid = ua.match(/(Android)\s+([\d.]+)/),isMobile = isIphone || isAndroid;
+        if(isMobile){//如果是手机则隐藏电脑div
+         document.getElementById("mobile_terminal").style.display="block";
+        }else{
+         document.getElementById("computer_side").style.display="block";
+        }
+ </script>
+ <div id="dlg_anticode_result" title="防伪码查询结果">
+  <p>
+    <span id='dlg_result'></span>
+  </p>
+</div>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?a8343ce890dd489f84c13130c1407a71";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+

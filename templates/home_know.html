@@ -1,0 +1,311 @@
+{% extends "base_home.html" %}
+{% load static %}
+
+
+{% block headcss %}
+<link href="{% static 'css/extra/jspxcms.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/extra/pic_change.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{% static 'css/extra/pic_change.js' %}"></script>
+{% endblock headcss %}
+
+<body>
+
+{% block line %}
+        <td height="41" align="center" class="dhyh"
+        	>&nbsp;&nbsp;<a href="/homeindex">首页</a>&nbsp;&nbsp;</td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homenews" >新闻资讯</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/hometraceability" >在线追溯</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homelegal" >政策法规</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homenotice" >通知公告</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeexposure" >曝光预警</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+
+					 	>
+					 	<a href="/homeindex/homegroup" >企业展示</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+                          bgcolor="#184B83"
+					 	>
+					 	<a href="/homeindex/homeknow" >知识讲堂</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeintroduction" >平台介绍</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homecomm" >联系我们</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+
+{% endblock line %}
+
+{% block body %}
+
+      <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+        <tr>
+          <td height="10"></td>
+        </tr>
+      </table>
+        </form>
+      </div>
+      <div class="w960 center clear mt1" >
+          <div class="pleft" >
+
+
+      <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="3" bgcolor="#25b9e2"></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+            <tr>
+              <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="96%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+                <tr>
+                  <td width="60" class="lanf12">当前位置:</td>
+                  <td class="f12l"><a href="//www.sctrace.org/zscp/">首页</a>><a href="//www.sctrace.org/zscp/node/217.jspx">知识讲堂</a> </td>
+                </tr>
+              </table></td>
+            </tr>
+          </table></td>
+        </tr>
+      </table>
+
+
+                   <div class="textlist" >
+                 <ul>
+                     {% for n in Page %}
+                     <li>
+                      <span class="spanleft"><a href="{% url 'homeindex:opennews' n.id %}" title="{{ n.title }}" target="_blank">{{ n.title }}</a></span>
+                         <span class="spanright">{{ n.create_time }}</span>
+                     {% endfor %}
+                  </li>
+
+                  </ul>
+
+      <div class="paged">
+      <a class="page-a">首页</a>
+      <a class="page-curr">1</a>
+
+      <a class="page-a" >末页</a>
+      <div style="clear:both;"></div>
+      </div>
+           </div>
+          </div>
+          <div class="pright"  >
+
+      <div class="pright" >
+
+
+
+
+       <table width="233" border="0" align="right" cellpadding="0" cellspacing="0" class="f12" style=" margin-right: 8px">
+            <tr>
+              <td height="37" valign="bottom" background="{% static 'images/scszspic_8.png' %}"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+                <tr>
+                  <td width="108" height="30" align="center">推荐内容</td>
+                  <td align="right" class="baif12l"><a href="#" target="_blank"></a></td>
+                </tr>
+              </table></td>
+            </tr>
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                <tr>
+                  <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                    <tr>
+                      <td width="1" bgcolor="#0087ae"></td>
+                      <td  height="350" valign="top"><table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                        <tr>
+                          <td height="8"></td>
+                        </tr>
+                      </table>
+                          {% for n in reco %}
+                                  <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+                                  <tr>
+                                    <td class="f12l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title | slice:":13" }}">{{ n.title | slice:":13" }}...</a></td>
+                                  </tr>
+                                </table>
+                                {% endfor %}
+                        </td>
+                      <td width="1" bgcolor="#0087ae"></td>
+                    </tr>
+                  </table></td>
+                </tr>
+                <tr>
+                  <td height="1" bgcolor="#0087ae"></td>
+                </tr>
+              </table></td>
+            </tr>
+
+
+
+            <tr>
+          <td height="10"></td>
+            </tr>
+
+
+
+
+
+
+
+
+          </table>
+      </div>	</div>
+      </div>
+      <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+        <tr>
+          <td height="10"></td>
+        </tr>
+      </table>
+      <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="background-color: red" >
+        <tr>
+          <td height="1" bgcolor="#c5d2df"></td>
+        </tr>
+        <tr>
+    <td height="110" align="center" bgcolor="#ebeff1" class="f12en">知其出处，食之有数！ <br />
+    Copyright &copy; 2022 NBS肉类食品质量追溯平台<br/><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F76db413114396733b6d3c6271c33aee3' type='text/javascript'%3E%3C/script%3E"));
+</script> </td>
+        </tr>
+      </table>
+
+      </body>
+      </div>
+      <!-- 手机版页面 -->
+      <div id="mobile_terminal" style="display: none">
+      <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta name="renderer" content="webkit">
+        <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=yes" name="viewport" />
+        <title>曝光预警 - NBS肉类食品质量追溯平台</title>
+        <meta name="keywords" content="曝光预警">
+        <meta name="description" content="曝光预警">
+      <link rel="stylesheet" href="{% static "css/main.css" %}">
+     <script src="{% static "js/modernizr.min.js" %}"></script>
+        <!--[if lt IE 9]>
+          <script src="/zscp/template/33/bluewise/_files/js/vendor/respond.min.js"></script>
+        <![endif]-->
+       <style type="text/css" >
+       .textlist1{
+       padding: 10px 20px;
+          border: 1px #DCDCDC;
+          solid: none;
+          height: 100%;
+      }
+      </style>
+      </head>
+
+      <body>
+      <!--[if lt IE 8]><p class="browserupgrade">您正在使用<strong>过时</strong>的浏览器，请更新您的浏览器。</p><![endif]-->
+      <nav class="navbar navbar-default" style="margin-bottom:0;">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/homeindex/">NBS肉类食品质量追溯平台</a>
+          </div>
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li class=""><a href="/homeindex/homenews">新闻资讯</a></li>
+        <li class=""><a href="/homeindex/hometraceability">在线追溯</a></li>
+        <li class=""><a href="/homeindex/homelegal">政策法规</a></li>
+        <li class=""><a href="/homeindex/homenotice">通知公告</a></li>
+        <li class=""><a href="/homeindex/homeexposure">曝光预警</a></li>
+        <li class=""><a href="/homeindex/homegroup">企业展示</a></li>
+        <li class="active"><a href="/homeindex/homeknow">知识讲堂</a></li>
+        <li class=""><a href="/homeindex/homeintroduction">平台介绍</a></li>
+        <li class=""><a href="/homeindex/homecomm">联系我们</a></li>
+      </ul>
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+      </nav>
+      <div class="container">
+        <h3 style="padding:8px 0;"><a href="/homeindex/homeknow">知识讲堂</a></h3>
+               <div class="position">
+                  当前位置：<a href="/homeindex/">首页</a>><a href="/homeindex/homeknow">知识讲堂</a>
+              </div>
+                    <div class="textlist1">
+                       <table>
+                           {% for n in know %}
+                     <tr>
+                          <td class="spanleft">
+                          <!--
+                          <a href="//www.sctrace.org/zscp/info/10691.jspx"><img class="media-object" src="/zscp/uploads/uploads/33/image/public/202108/20210817104838_mcoqdyy5pu" style="width:100px;height:70px;"></a>
+                           -->
+                          <a href="{% url 'homeindex:opennews' n.id %}" title="{{ n.title | slice:":20" }}" target="_blank">{{ n.title | slice:":20" }}</a></td>
+                          <td class="spanright">{{ n.create_time | date:'Y-m-d' }}</td>
+                      </tr>
+                        {% endfor %}
+                     </table>
+                    </div>
+      <nav>
+        <ul class="pagination">
+           <a class="page-a">首页</a>
+      <a class="page-curr">1</a>
+      <a href="//www.sctrace.org/zscp/node/217_2.jspx" class="page-a">2</a>
+      <a href="//www.sctrace.org/zscp/node/217_3.jspx" class="page-a">3</a>
+      <a href="//www.sctrace.org/zscp/node/217_4.jspx" class="page-a">4</a>
+      <a href="//www.sctrace.org/zscp/node/217_5.jspx" class="page-a">5</a>
+      <a href="//www.sctrace.org/zscp/node/217_6.jspx" class="page-a">6</a>
+      <a href="//www.sctrace.org/zscp/node/217_2.jspx" class="page-a">下一页</a>
+
+      <a href="//www.sctrace.org/zscp/node/217_6.jspx" class="page-a" >末页</a>
+      <div style="clear:both;"></div>
+        </ul>
+      </nav>
+    </div>
+{% endblock body %}
+    <footer class="container" style="font-size:12px;padding-top:10px;margin-top:10px;background-color:#eee;">
+        <p height="110" align="center" bgcolor="#ebeff1" class="f12en">主办单位: 四川省标准化研究院       <a style="text-decoration: none" href=""  onclick="javascript:window.open   ( 'https://beian.miit.gov.cn/')"><font color="#5e5e5e" style="font-family: '宋体'">蜀ICP备10011565号-5</font> </a><br />
+        Copyright &copy; 2014 四川重点产品质量信息追溯平台<br/><script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F76db413114396733b6d3c6271c33aee3' type='text/javascript'%3E%3C/script%3E"));
+    </script> </p>
+    </footer>
+      <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+    </body>
+    </div>
+
+    <script type="text/javascript">
+            var ua = navigator.userAgent;var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),isAndroid = ua.match(/(Android)\s+([\d.]+)/),isMobile = isIphone || isAndroid;
+            if(isMobile){//如果是手机则隐藏电脑div
+             document.getElementById("mobile_terminal").style.display="block";
+            }else{
+             document.getElementById("computer_side").style.display="block";
+            }
+     </script>
+    </html>

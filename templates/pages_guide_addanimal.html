@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+
+    <!--页面主要内容-->
+
+    {% block main %}
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header"><h4>动物信息添加向导</h4></div>
+              <div class="card-body">
+                <form action="#" method="post" class="guide-box" data-navigateable="true">
+                    {% csrf_token %}
+                  <ul class="nav-step step-dots">
+                    <li class="nav-step-item active">
+                      <span>步骤一</span>
+                      <a class="active" data-toggle="tab" href="#step-1"></a>
+                    </li>
+
+                    <li class="nav-step-item">
+                      <span>步骤二</span>
+                      <a data-toggle="tab" href="#step-2"></a>
+                    </li>
+
+                    <li class="nav-step-item">
+                      <span>步骤三</span>
+                      <a data-toggle="tab" href="#step-3"></a>
+                    </li>
+
+                    <li class="nav-step-item">
+                      <span>步骤四</span>
+                      <a data-toggle="tab" href="#step-4"></a>
+                    </li>
+                    <li class="nav-step-item">
+                      <span>步骤五</span>
+                      <a data-toggle="tab" href="#step-5"></a>
+                    </li>
+
+                  </ul>
+                
+                  <!--对应内容-->
+                  <div class="nav-step-content">
+
+                    <div class="nav-step-pane hidden active" id="step-1">
+                      <div class="form-group">
+                        <label>产地</label>
+                        <input class="form-control" name="address" type="text" required>
+                      </div>
+                    </div>
+
+                    <div class="nav-step-pane hidden" id="step-2">
+                      <div class="form-group">
+                        <label>品种</label>
+                        <input class="form-control" name="aclass" type="text" required>
+                      </div>
+                    </div>
+
+                    <div class="nav-step-pane hidden" id="step-3">
+                      <div class="form-group">
+                        <label>父类(中间空格隔开)</label>
+                        <input class="form-control" name="fa_mo" type="text" required>
+                      </div>
+                    </div>
+
+                    <div class="nav-step-pane hidden" id="step-4">
+                      <div class="form-group">
+                        <label>圈栏号</label>
+                        <input class="form-control" name="num" type="text" required>
+                      </div>
+                    </div>
+
+                    <div class="nav-step-pane hidden" id="step-5">
+                      <div class="form-group">
+                        <label>企业营业执照号码</label>
+                        <input class="form-control" name="license" type="text" required>
+                      </div>
+                    </div>
+
+                  </div>
+                  <!--End 对应内容-->
+                  <hr>
+                    <strong style="color:red;text-align:right;">{{ msg }}</strong>
+                  <div class="nav-step-button">
+                    <button class="btn btn-secondary disabled" data-wizard="prev" type="button">上一步</button>
+                    <button class="btn btn-secondary" data-wizard="next" type="button">下一步</button>
+                    <button class="btn btn-primary hidden" data-wizard="finish" type="submit" onclick="finish()">完成</button>
+                  </div>
+                </form>
+       
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->
+
+
+<!--向导插件-->
+{% block footjs %}
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/jquery.bootstrap.wizard.min.js' %}"></script>
+<script type="text/javascript">
+{#function check(){#}
+{#    var item = $("input[class='form-control']", document.forms[0]);#}
+{#    for( var i=0; i<item.length; i++ ){#}
+{#        if( item[i].value == "" ){#}
+{#            alert(item[i].title + " 为必填项");#}
+{#            item[i].focus();    //光标定位到未填input框中#}
+{#            return false;#}
+{#		}#}
+{#	}#}
+{#    return true;#}
+{#}#}
+
+$(document).ready(function() {
+
+    $('.guide-box').bootstrapWizard({
+        'tabClass': 'nav-step',
+        'nextSelector': '[data-wizard="next"]',
+        'previousSelector': '[data-wizard="prev"]',
+        'finishSelector': '[data-wizard="finish"]',
+        'onTabClick': function(e, t, i) {
+            if (!$('.guide-box').is('[data-navigateable="true"]')) return ! 1
+        },
+        'onTabShow': function(e, t, i) {
+            t.children(":gt(" + i + ").complete").removeClass("complete");
+            t.children(":lt(" + i + "):not(.complete)").addClass("complete");
+        },
+        'onFinish': function(e, t, i) {
+            // 点击完成后处理提交
+        }
+    });
+});
+</script>
+{% endblock footjs %}

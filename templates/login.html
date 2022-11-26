@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+<title>用户登录</title>
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+    <div class="content">
+        <div class="form sign-in">
+            <h2>欢迎回来</h2>
+
+            <form id='lg' method="post">
+            {% csrf_token %}
+            <label>
+                <span>用户名</span>
+                <input name="username" type="text" />
+            </label>
+            <label>
+                <span>密码</span>
+                <input name="password" type="password" />
+            </label>
+            <p class="forgot-pass"><a href="javascript:">忘记密码？</a></p>
+{#            <span class="ex">{{msg}}</span>#}
+            <input class="submit" type="submit" value="登录" name="lg">
+            <button type="button" class="fb-btn">千里之行 <span>始于</span> 足下</button>
+
+            </form>
+        </div>
+        <div class="sub-cont">
+            <div class="img">
+                <div class="img__text m--up">
+                    <h2>还未注册？</h2>
+                    <p>立即注册，进行管理！</p>
+                </div>
+                <div class="img__text m--in">
+                    <h2>已有帐号？</h2>
+                    <p>有帐号就登录吧，好久不见了！</p>
+                </div>
+                <div class="img__btn">
+                    <span class="m--up">注 册</span>
+                    <span class="m--in">登 录</span>
+                </div>
+            </div>
+            <div class="form sign-up">
+                <form id='rg' method="post" >
+                {% csrf_token %}
+                <h2>立即注册</h2>
+                <label>
+                    <span>用户名</span>
+                    <input id="user_name" name="user_name" type="text" required/>
+                </label>
+                <label>
+                    <span>邮箱</span>
+                    <input id="e_mail" name="e_mail" type="email" required/>
+                </label>
+
+                <label>
+                    <span>验证码</span>
+                    <input id="co_de" name="co_de" type="text" />
+                </label>
+
+                <label>
+                    <span>密码</span>
+                    <input id="pass_word" name="pass_word" type="password" />
+                </label>
+                <input class="submit" type="submit" value="注册" name="rg" >
+{#                <input class="code" type="submit" value="获取验证码" onclick="ol()">#}
+
+                </form>
+                <button id="submit" class="fb-btn" onclick="ol()">获取验证码</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/script.js' %}"></script>
+	<script src="{% static 'js/jquery.cookie.js' %}"></script>
+
+	<div style="text-align:center;">
+<p></p>
+</div>
+</body>
+
+</html>
+
+
+<script>
+    {% for msg in messages %}
+        alert('{{ msg.message }}');
+    {% endfor %}
+
+
+    function ol(){
+        var user_name = document.getElementById('user_name').value;
+        var pass_word = document.getElementById('pass_word').value;
+        var e_mail = document.getElementById('e_mail').value;
+        var co_de = document.getElementById('co_de').value;
+
+
+        $.ajax({
+            type:"POST",
+            dataType: "json",
+            headers: {
+                'Accept': 'application/json',
+                'X-Requested-With': 'XMLHttpRequest', //Necessary to work with request.is_ajax()
+                "X-CSRFToken":$.cookie("csrftoken"),
+            },
+            data: {user_name:user_name, pass_word:pass_word, e_mail:e_mail, co_de:co_de},
+            url: "{% url 'users:login' %}",
+            success: function(msg){
+                alert(msg.msg)
+            },
+            error: function(){
+                alert("未知错误");
+            }
+        });
+    }
+
+</script>

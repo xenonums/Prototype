@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+
+      <div class="container-fluid">
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header"><h4>收入/支出</h4></div>
+              <div class="card-body">
+                <canvas id="chart-line-3" width="400" height="250"></canvas>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header"><h4>销量</h4></div>
+              <div class="card-body">
+                <canvas id="chart-line-4" width="400" height="250"></canvas>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->
+{% block footjs %}
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/Chart.js' %}"></script>
+
+<script type="text/javascript">
+
+
+new Chart($("#chart-line-3"), {
+    type: 'line',
+    data: {
+        labels: ["一月", "二月", "三月", "四月"],
+        datasets: [{
+            label: "收入",
+            fill: false,
+            backgroundColor: "#36a2eb",
+            borderColor: "#36a2eb",
+            borderWidth: 3,
+            pointRadius: 0,
+            data:[ 0, 0, 0, {{m}}]
+        },
+        {
+            label: "支出",
+            fill: false,
+            borderColor: "#ff6384",
+            backgroundColor: "#ff6384",
+            borderWidth: 3,
+            pointRadius: 0,
+            data: [0, 0, 0, {{n}}]
+        }]
+    },
+    options: {}
+});
+
+new Chart($("#chart-line-4"), {
+    type: 'line',
+    data: {
+        labels: ["一月", "二月", "三月", "四月"],
+        datasets: [{
+            label: "卖出",
+            fill: false,
+            borderWidth: 3,
+            pointRadius: 4,
+            borderColor: "#36a2eb",
+            backgroundColor: "#36a2eb",
+            pointBackgroundColor: "#36a2eb",
+            pointBorderColor: "#36a2eb",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "#36a2eb",
+            data: [0, 0, 0, {{x}}]
+        },
+        {
+            label: "购入",
+            fill: false,
+            borderWidth: 3,
+            pointRadius: 4,
+            borderColor: "#ff6384",
+            backgroundColor: "#ff6384",
+            pointBackgroundColor: "#ff6384",
+            pointBorderColor: "#ff6384",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "#ff6384",
+            data: [0, 0, 0, {{ g }}]
+        }]
+    },
+    options: {}
+});
+
+
+</script>
+{% endblock footjs %}

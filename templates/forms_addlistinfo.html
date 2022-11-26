@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+
+    
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+      <div class="container-fluid" style="">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header bg-danger">
+                <h4>销售清单信息</h4>
+                <ul class="card-actions">
+                  <li>
+                    <button type="button"><i class="mdi mdi-more"></i></button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-body">
+                <form id="info" class="form-horizontal" action="" method="post" enctype="multipart/form-data" onsubmit="">
+                    {% csrf_token %}
+                    {% if user.is_authenticated %}
+                  <div class="form-group">
+                    <label class="col-xs-12">销售商用户名</label>
+                    <div class="col-xs-12">
+                       <input type="radio" id="example-radio1" name="user" value="{{ user.id }}" checked="checked" style="display:none;padding:0.2em 1em;border:1px solid #CCCCCC;color:#999;">
+                        {{ user.username }}
+                    </div>
+                  </div>
+                    {% endif %}
+                  <div class="form-group has-success">
+                    <label class="col-xs-12" for="example-select">销售部位</label>
+                    <div class="col-xs-12">
+                      <select class="form-control" id="example-select" name="si" size="1">
+                        <option value="">请选择</option>
+                          {% for s in sa %}
+                        <option value="{{ s.id }}">部位：{{ s.siid.sid.patch }}-{{ s.id }}</option>
+                          {% endfor %}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="form-group has-success">
+                    <label class="col-xs-12" for="example-text-input">重量</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input" name="heavy" placeholder="文本..">
+                    </div>
+                  </div>
+
+                  <div class="form-group has-success">
+                    <label class="col-xs-12" for="example-text-input">价格</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input" name="price" placeholder="文本..">
+                    </div>
+                  </div>
+
+                  <div class="form-group has-success">
+                    <label class="col-xs-12" for="example-text-input">保质期（天）</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input" name="day" placeholder="文本..">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <button class="btn btn-primary" type="submit" name="info">提交</button>
+                    </div>
+                  </div>
+                </form>
+                <strong style="color:red;">{{ msg }}</strong>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="card">
+
+              <div class="card-header"><h4>备忘</h4></div>
+              <div class="card-body">
+                <form id="na" class="form-horizontal" action="#" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="form-group">
+                    <label class="col-xs-12" for="example-textarea-input">请输入内容</label>
+                    <div class="col-xs-12">
+                      <textarea class="form-control" id="example-textarea-input" name="passage" rows="6" placeholder="内容.."></textarea>
+                    </div>
+                  </div>
+
+                  <div class="radio" style="text-align: right;">
+                     <label for="example-radio1">
+                       <input type="radio" id="example-radio1" name="u" value="{{ user.username }}" checked="checked" style="display:none;padding:0.2em 1em;border:1px solid #CCCCCC;color:#999;;">
+                        {{ user.username }}
+                       </label>
+                  </div>
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <button class="btn btn-primary" type="submit" name="na">提交</button>
+                    </div>
+                  </div>
+
+                </form>
+
+                <h5>近期备忘事项</h5>
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>内容</th>
+                      <th>作者</th>
+                      <th>时间</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for p in pa %}
+                    <tr class="warning">
+                      <th scope="row">{{ p.id }}</th>
+                      <td>{{ p.passage }}</td>
+                      <td>{{ p.uid.username }}</td>
+                      <td>{{ p.create_time }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->

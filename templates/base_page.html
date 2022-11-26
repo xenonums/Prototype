@@ -1,0 +1,482 @@
+{% load static %}
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  class="no-js" lang="zh-CN">
+<!-- 电脑页面默认不显示 -->
+<script type="text/javascript" src="http://me.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=33OB7TEnXG_KR_suRJBu7pds2Na_uxA-KNPZIW1Aa33xwrNeCg1kuiic3IwG2f6f" charset="UTF-8"></script><link rel="stylesheet" crossorigin="anonymous" href="http://me.kis.v2.scr.kaspersky-labs.com/E3E8934C-235A-4B0E-825A-35A08381A191/abn/main.css?attr=aHR0cDovL3d3dy5zY3RyYWNlLm9yZy96c2NwLz8"/><div id="computer_side" style="display: none">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" />
+<title>NBS肉类食品质量追溯平台</title>
+{% block headcssjs %}
+<link href="{% static 'css/jquery-ui.min.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/buttons.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'css/silder.css' %}" rel="stylesheet" type="text/css">
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<!-- pages -->
+<link href="{% static 'css/extra/jspxcms.css' %}" rel="stylesheet" type="text/css" />
+<link href="{% static 'css/extra/pic_change.css' %}" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{% static 'css/extra/pic_change.js' %}"></script>
+{% endblock headcssjs %}
+<!-- pages -->
+
+</head>
+
+<body>
+<script type="text/javascript">
+	 var ua = navigator.userAgent;
+	 var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),isAndroid = ua.match(/(Android)\s+([\d.]+)/),isMobile = isIphone || isAndroid;
+	 var head = document.getElementsByTagName('HEAD').item(0);
+	 var style = document.createElement('link');
+	 style.rel = 'stylesheet';
+	 style.type = 'text/css';
+	 if(isMobile){//如果是手机则加载botstrap.min否则不加载
+    	 style.href = '{% static 'css/bootstrap.min.css' %}';
+     }else{
+    	 style.href = '{% static 'css/scszs.css' %}';
+     }
+	 head.appendChild(style);
+	</script>
+
+<script type="text/javascript">
+
+ function searchsubmit(){
+       $("#searchForm").submit() ;
+   }
+
+</script>
+<div class="top w1002 center">
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="margin: auto; ">
+  <tr>
+    <td>
+<!--
+<object data="/zscp/template/33/bluewise/images/banner.swf" type="application/x-shockwave-flash" width="1002" height="225">
+<param name="movie" value="/zscp/template/33/bluewise/images/banner.swf" />
+<param name="wmode" value="transparent"/>
+</object> 
+-->
+<img src="{% static 'images/zs-1.jpg' %}"/>
+    </td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="margin: auto; ">
+  <tr>
+    <td height="41" background="{% static 'images/scszspic_1.png' %}"><table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="margin-left:0px;">
+      <tr>
+          {% block line %}
+        <td height="41" align="center" class="dhyh"
+        	>&nbsp;&nbsp;<a href="/homeindex">首页</a>&nbsp;&nbsp;</td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homenews" >新闻资讯</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/hometraceability" >在线追溯</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homelegal" >政策法规</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homenotice" >通知公告</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeexposure" >曝光预警</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homegroup" >企业展示</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeknow" >知识讲堂</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homeintroduction" >平台介绍</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+					<td align="center" class="dhyh"
+					 	>
+					 	<a href="/homeindex/homecomm" >联系我们</a>
+					 </td>
+					        <td width="2" background="{% static 'images/scszspic_2.png' %}"></td>
+
+                   {% endblock line %}
+    </tr>
+    </table></td>
+  </tr>
+</table>
+<!-- !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
+<form  id="searchForm" name="formsearch" action="{% url "homeindex:search" %}" > 
+  <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+    <tr>
+      <td height="33" bgcolor="#FFFFFF"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td width="30"><img src="{% static 'images/scszspic_3.png' %}" width="10" height="15" /></td>
+          <td width="670"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="lanf12">
+            <tr>
+              <td class="f12l"><marquee onmouseover="this.stop()" onmouseout="this.start()" scrollamount="4" scrolldelay="20" direction="left" width="100%">
+
+		          {% for n in newest %}
+		          · <a href="#" target="_blank">{{ n.title }}</a>　　&nbsp;&nbsp;&nbsp;
+                  {% endfor %}
+
+               </marquee></td>
+            </tr>
+          </table></td>
+          <td><table width="95%" border="0" align="right" cellpadding="0" cellspacing="0" class="f12">
+            <tr>
+              <td width="25" align="center"><img src="{% static 'images/scszspic_4.png' %}" width="16" height="16" /></td>
+              <td>站内搜索</td>
+              <td>
+            
+              <input  name="wd" type="text" class="search-keyword" id="search-keyword"style="width:115px; height:16px " />
+            
+              </td>
+              <td><img class="search-submit" onclick="searchsubmit()" src="{% static 'images/scszspic_5.png' %}" width="47" height="21"  style="cursor:pointer"/></td>
+              </tr>
+          </table></td>
+        </tr>
+      </table></td>
+    </tr>
+    <tr>
+      <td height="1" bgcolor="#e1e1e1"></td>
+    </tr>
+  </table>
+  <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+    <tr>
+      <td height="10"></td>
+    </tr>
+  </table>
+    </form>
+  </div>
+  <div class="w960 center clear mt1">
+    <div class="pleft">
+        <div class="position">
+            {% block location %}
+
+            {% endblock location %}
+          </div>
+        <div class="textinfo">
+           <h2 class="title mt2">
+               {% block title %}
+
+               {% endblock title %}
+           </h2>
+           <p class="infoattr">
+             <span>
+                 {% block time %}
+
+                 {% endblock time %}
+             </span>
+                  <span>浏览次数：
+                      {% block num %}
+
+                      {% endblock num %}
+                      <span id="info_views"></span>
+              
+               
+          <script type="text/javascript">
+            $("#info_views").load("/zscp/info_views/583.jspx?d="+new Date()*1);
+          </script></span>
+           </p>
+            {% block page %}
+
+            {% endblock page %}
+
+            <div class="mood">
+              <script type="text/javascript">
+                function infoScoring(id,itemId) {
+                  $.post('/zscp/info_scoring.jspx',
+                    {id:id,itemId:itemId},
+                    function(data) {
+                      if(data!="0"){
+                        $("#score-item-"+itemId).text(data);
+                      }else{
+                        alert("你已经表达过心情了！");	
+                      }
+                    }
+                  );
+                }
+              </script>
+            
+              <script type="text/javascript">
+                $.get("/zscp/info_score/583.jspx?d="+new Date()*1,function(data) {
+                  for(id in data) {
+                    $("#score-item-"+id).text(data[id]);
+                  }
+                },"json");
+              </script>
+            </div>
+          
+          
+           
+            <!-- Baidu Button BEGIN -->
+              <div class="share-btn" style="margin:10px 8px; height:30px;">
+              <div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+                  <span class="bds_more">分享到：</span>
+                  <a class="bds_qzone"></a>
+                  <a class="bds_tsina"></a>
+                  <a class="bds_tqq"></a>
+                  <a class="bds_renren"></a>
+                  <a class="shareCount"></a>
+              </div>
+            <script type="text/javascript" id="bdshare_js" data="type=tools" ></script>
+            <script type="text/javascript" id="bdshell_js"></script>
+              <script type="text/javascript">
+              document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+            </script>
+             </div>
+          <!-- Baidu Button END -->
+         </div>
+        {% block othernews %}
+         
+        {% endblock othernews %}
+        <!-- <div class="comment">	 
+            <p style="font-size:14px;">评论</p>
+          <form id="comment" action="/zscp/comment_submit.jspx" method="post">
+            <input type="hidden" name="ftype" value="Info"/>
+            <input type="hidden" name="fid" value="583"/>
+            <input type="hidden" name="status_0" value="评论成功！"/>
+            <input type="hidden" name="status_1" value="评论成功，请等待管理员审核！"/>
+            <input type="hidden" name="nextUrl" value="/zscp/info/583.jspx"/>
+            <p><textarea id="content" name="text" maxlength="2147483647"></textarea></p>
+            <script type="text/javascript" src="/zscp/app.jspx?template=comment_captcha"></script>
+            <p><input id="commit" type="submit" value=" "/></p>
+          </form>
+          <h2 style="margin:20px 0px;">网友评论:</h2>
+          <div id="comment_div"></div>
+            <script type="text/javascript">
+               $("#comment_div").load("/zscp/comment_list.jspx?fid=583&d="+new Date()*1);
+            </script>
+            <p>
+                <a href="/zscp/comment.jspx?fid=583">
+                共<span id="info_comments"></span>评论。点击查看
+                </a>
+            <script type="text/javascript">
+               $("#info_comments").load("/zscp/info_comments/583.jspx?d="+new Date()*1);
+            </script>
+           </p>
+         </div>     -->
+        {% block reletednews %}
+
+        {% endblock reletednews %}
+    </div>
+    <div class="pright">
+  
+  <div class="pright" > 
+  
+  
+   
+   
+   <table width="233" border="0" align="right" cellpadding="0" cellspacing="0" class="f12" style=" margin-right: 8px">
+        <tr>
+          <td height="37" valign="bottom" background="{% static 'images/scszspic_8.png' %}"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+            <tr>
+              <td width="108" height="30" align="center">推荐内容</td>
+              <td align="right" class="baif12l"><a href="#" target="_blank"></a></td>
+            </tr>
+          </table></td>
+        </tr>
+        <tr>
+          <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+            <tr>
+              <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                <tr>
+                  <td width="1" bgcolor="#0087ae"></td>
+                  <td  height="350" valign="top"><table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                    <tr>
+                      <td height="8"></td>
+                    </tr>
+                  </table>
+
+                          {% for n in reco %}
+                                  <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+                                  <tr>
+                                    <td class="f12l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title | slice:":13" }}">{{ n.title | slice:":13" }}...</a></td>
+                                  </tr>
+                                </table>
+                                {% endfor %}
+        
+                    </td>
+                  <td width="1" bgcolor="#0087ae"></td>
+                </tr>
+              </table></td>
+            </tr>
+            <tr>
+              <td height="1" bgcolor="#0087ae"></td>
+            </tr>
+          </table></td>
+        </tr>
+        
+        
+        
+        <tr>
+      <td height="10"></td>
+        </tr>
+        
+        
+         
+        
+    
+  
+        
+     
+      </table>
+  </div>	</div>
+  </div>
+  <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+    <tr>
+      <td height="10"></td>
+    </tr>
+  </table>
+  <table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" class="f12" style="background-color: red" >
+    <tr>
+      <td height="1" bgcolor="#c5d2df"></td>
+    </tr>
+    <tr>
+    <td height="110" align="center" bgcolor="#ebeff1" class="f12en">知其出处，食之有数！ <br />
+    Copyright &copy; 2022 NBS肉类食品质量追溯平台<br/><script type="text/javascript">
+var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F76db413114396733b6d3c6271c33aee3' type='text/javascript'%3E%3C/script%3E"));
+</script> </td>
+    </tr>
+  </table>
+  
+  
+  
+  
+  
+  
+  
+  
+  </body>
+  </div>
+  
+  <!-- 手机版新闻等详细信息页面 -->
+  <div id="mobile_terminal" style="display: none">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="renderer" content="webkit">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=yes" name="viewport" />
+    <title>信息显示 - NBS肉类食品质量追溯平台 </title>
+    <meta name="keywords" content="信息显示">
+    <meta name="description" content="平台介绍数据测试平台介绍数据测试平台介绍数据测试平台介绍数据测试平台介绍数据测试平台介绍数据测试">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+   <script src="{% static 'js/modernizr.min.js' %}"></script>
+    <!--[if lt IE 9]>
+      <script src="/zscp/template/33/bluewise/_files/js/vendor/respond.min.js"></script>
+    <![endif]-->
+    <style>
+    .info-text img{max-width:100%;}
+    .info-text table{
+    width:100%;
+    }
+    </style>
+  </head>
+  <body>
+  
+  <!--[if lt IE 8]><p class="browserupgrade">您正在使用<strong>过时</strong>的浏览器，请更新您的浏览器。</p><![endif]-->
+  <nav class="navbar navbar-default" style="margin-bottom:0;">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/homeindex/">NBS肉类食品质量追溯平台</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          {% block mline %}
+      <ul class="nav navbar-nav">
+        <li class=""><a href="/homeindex/homenews">新闻资讯</a></li>
+        <li class=""><a href="/homeindex/hometraceability">在线追溯</a></li>
+        <li class=""><a href="/homeindex/homelegal">政策法规</a></li>
+        <li class=""><a href="/homeindex/homenotice">通知公告</a></li>
+        <li class=""><a href="/homeindex/homeexposure">曝光预警</a></li>
+        <li class=""><a href="/homeindex/homegroup">企业展示</a></li>
+        <li class=""><a href="/homeindex/homeknow">知识讲堂</a></li>
+        <li class=""><a href="/homeindex/homeintroduction">平台介绍</a></li>
+        <li class=""><a href="/homeindex/homecomm">联系我们</a></li>
+      </ul>
+          {% endblock mline %}
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav>
+  
+  <ol class="breadcrumb">
+    <li><a href="/homeindex/">首页</a></li>
+    <li class="active"><a>正文</a></li>
+  </ol>
+  
+  <div class="container">
+    <h3 class="ff-yh">
+        {% block mtitle %}
+
+        {% endblock mtitle %}
+    </h3>
+    <div class="clearfix" style="border-bottom:1px solid #eee;padding:5px 0;color:#888;">
+      <div class="pull-left">
+          {% block mtime %}
+
+          {% endblock mtime %}
+      </div>
+      <div class="pull-right"><span id="info_viewsp">
+      <script type="text/javascript">
+            $("#info_viewsp").load("/zscp/info_views/583.jspx?d="+new Date()*1);
+          </script>
+      </span>
+          {% block mnum %}
+
+          {% endblock mnum %}
+          次阅读</div>
+    </div>
+    {% block mpage %}
+
+    {% endblock mpage %}
+    <footer class="container" style="font-size:12px;padding-top:10px;margin-top:10px;background-color:#eee;">
+        <p height="110" align="center" bgcolor="#ebeff1" class="f12en">知其出处，食之有数！<br />
+    Copyright &copy; 2022 NBS肉类食品质量追溯平台<br/><script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F76db413114396733b6d3c6271c33aee3' type='text/javascript'%3E%3C/script%3E"));
+    </script> </p>
+    </footer>
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+  </div>
+    </body>
+    </div>
+    
+    <script type="text/javascript">
+            var ua = navigator.userAgent;var ipad = ua.match(/(iPad).*OS\s([\d_]+)/),isIphone = !ipad && ua.match(/(iPhone\sOS)\s([\d_]+)/),isAndroid = ua.match(/(Android)\s+([\d.]+)/),isMobile = isIphone || isAndroid;
+            if(isMobile){//如果是手机则隐藏电脑div
+             document.getElementById("mobile_terminal").style.display="block";
+            }else{
+             document.getElementById("computer_side").style.display="block";
+            }
+     </script>
+
+    </html>
+    {% block fjs %}
+    {% endblock fjs %}

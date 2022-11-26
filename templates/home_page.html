@@ -1,0 +1,58 @@
+{% extends "base_page.html" %}
+{% load static %}
+
+{% block location %}
+    当前位置：<a href="/homeindex/">首页</a>>正文
+{% endblock location %}
+
+{% block title %}
+{{ pages.title }}
+{% endblock title %}
+
+{% block time %}
+{{ pages.create_time }}
+{% endblock time %}
+
+{% block num %}
+{{ pages.views }}
+{% endblock num %}
+
+{% block page %}
+{{ pages.gcontent | safe }}
+{% endblock page %}
+
+{% block othernews %}
+
+{% endblock othernews %}
+
+{% block reletednews %}
+        <div class="reletednews">
+             <p>相关新闻：</p>
+              </ul>
+                {% for x,y,z in itzip %}
+                <li>
+                  <span class="spanleft"><a href="{% url 'homeindex:opennews' x %}" title="{{ y | slice:":25" }}" target="_blank">{{ y | slice:":25" }}...</a></span>
+                  <span class="spanright">{{ z }}</span>
+                </li>
+                {% endfor %}
+              </ul>
+         </div>
+{% endblock reletednews %}
+
+{##################手机#####################}
+
+{% block mtitle %}
+{{ pages.title }}
+{% endblock mtitle %}
+
+{% block mtime %}
+{{ pages.create_time }}
+{% endblock mtime %}
+
+{% block mnum %}
+{{ pages.views }}
+{% endblock mnum %}
+
+{% block mpage %}
+{{ pages.gcontent | safe }}
+{% endblock mpage %}

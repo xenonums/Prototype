@@ -1,0 +1,190 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+      
+      <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card">
+              <div class="card-header bg-info">
+                <h4>检疫信息</h4>
+                <ul class="card-actions">
+                  <li>
+                    <button type="button"><i class="mdi mdi-more"></i></button>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-toolbar clearfix">
+                <form class="pull-right search-bar" method="get" action="#!" role="form">
+                  <div class="input-group">
+                    <input type="text" class="form-control" value="" name="keyword" placeholder="请输入名称">
+                                          <div class="input-group-btn">
+                        <button type="button" class="btn btn-default">搜索</button>
+                    </div>
+                  </div>
+                </form>
+                <div class="toolbar-btn-action">
+                  <a class="btn btn-primary m-r-12" href="javascript:;" id="add"><i class="mdi mdi-plus"></i>以后有用</a>
+{#                  <a class="btn btn-success m-r-5" href="#!"><i class="mdi mdi-check"></i> 启用</a>#}
+{#                  <a class="btn btn-warning m-r-5" href="#!"><i class="mdi mdi-block-helper"></i> 禁用</a>#}
+{#                  <a class="btn btn-danger" href="#!"><i class="mdi mdi-window-close"></i> 删除</a>#}
+                </div>
+              </div>
+              <div class="card-body">
+                
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                      <tr>
+                        <th>
+                          <label class="lyear-checkbox checkbox-primary">
+                            <input type="checkbox" id="check-all"><span></span>
+                          </label>
+                        </th>
+                        <th>动物ID</th>
+                        <th>入栏时间</th>
+                        <th>出生地点</th>
+                        <th>品种类型</th>
+                        <th>父类</th>
+                        <th>圈栏号</th>
+                        <th>是否病死</th>
+                        <th>是否转出</th>
+                        <th>企业营业执照号码</th>
+                        <th>养殖企业</th>
+                        <th>操作</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for id in mess %}
+                      <tr>
+                        <td>
+                          <label class="lyear-checkbox checkbox-primary">
+                            <input type="checkbox" name="ids[]" value="1"><span></span>
+                          </label>
+                        </td>
+                        <td id="necessary">{{ id.id }}</td>
+                        <td>{{ id.create_time | date:"y年m月d日" }}</td>
+                        <td>
+                            {% if id.address == '510811' %}
+                                {{ "四川广元" }}
+                             {% elif id.address == '620105' %}
+                                {{ "甘肃兰州" }}
+                             {% elif id.address == '610102' %}
+                                {{ "陕西西安" }}
+                             {% endif %}
+                        </td>
+                        <td>{{ id.aclass }}</td>
+                        <td>{{ id.fa_mo }}</td>
+                        <td>{{ id.num }}</td>
+                        <td>
+                            {% if id.dead == True %}
+                                {{ "是" }}
+                             {% else %}
+                                {{ "否" }}
+                             {% endif %}
+                        </td>
+                        <td>
+                             {% if id.is_turn == True %}
+                                {{ "是" }}
+                             {% else %}
+                                {{ "否" }}
+                             {% endif %}
+                        </td>
+                        <td>{{ id.license }}</td>
+                        <td><font class="text-success">{{ id.clgroup }}</font></td>
+                        <td>
+                          <div class="btn-group">
+                            <a class="btn btn-xs btn-default" href="#!" title="宰杀" data-toggle="tooltip" id="add{{ id.id }}"><i class="mdi mdi-sword-cross"></i></a>
+                          </div>
+                        </td>
+                      </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                <ul class="pagination" id="pager">
+
+                {% if mess.has_previous %}
+                    {#  当前页的上一页按钮正常使用#}
+                    <li class="previous"><a href="/slaughter/animaltokill?page={{ mess.previous_page_number }}">上一页</a></li>
+                {% else %}
+                    {# 当前页的不存在上一页时,上一页的按钮不可用#}
+                    <li class="previous disabled"><a href="#">上一页</a></li>
+                {% endif %}
+                {#上一页按钮结束#}
+                {# 页码开始#}
+                {% for num in paginator.page_range %}
+
+                    {% if num == currentPage %}
+                        <li class="item active"><a href="/slaughter/animaltokill?page={{ num }}">{{ num }}</a></li>
+                    {% else %}
+                        <li class="item"><a href="/slaughter/animaltokill?page={{ num }}">{{ num }}</a></li>
+
+                    {% endif %}
+                {% endfor %}
+                {#页码结束#}
+                {# 下一页按钮开始#}
+                {% if mess.has_next %}
+                    <li class="next"><a href="/slaughter/animaltokill?page={{ mess.next_page_number }}">下一页</a></li>
+                {% else %}
+                    <li class="next disabled"><a href="#">下一页</a></li>
+                {% endif %}
+                {# 下一页按钮结束#}
+                </ul>
+       
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->
+
+{% block footjs %}
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/perfect-scrollbar.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/main.min.js' %}"></script>
+<script src="{% static '/layer/layer.js' %}"></script>
+
+<script>
+    $(function(){
+    $('.search-bar .dropdown-menu a').click(function() {
+        var field = $(this).data('field') || '';
+        $('#search-field').val(field);
+        $('#search-btn').html($(this).text() + ' <span class="caret"></span>');
+    });
+    });
+
+    {% for id in mes %}
+    !function(){
+    //关于
+    $('#add{{ id.id }}').on('click', function(){
+      layer.ready(function(){
+      layer.open({
+        type: 2,
+        title: '屠宰信息录入',
+        maxmin: true,
+        area: ['800px', '500px'],
+        content: '{% url 'slaughter:addslaughter' id.id %}',
+        end: function(){
+          layer.tips('点击继续添加', '#add', {tips: 1})
+        }
+      });
+    });
+    });
+
+    }();
+    {% endfor %}
+</script>
+{% endblock footjs %}
+

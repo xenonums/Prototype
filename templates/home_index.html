@@ -1,0 +1,522 @@
+{% extends 'base_home.html' %}
+{% load static %}
+
+{% block head %}
+    {% for n in head %}
+         <li><a href="{% url 'homeindex:opennews' n.id %}" title="{{ n.title }}"><img  width="337" height="263"  src="{{ n.image.url }}"></img></a></li>
+    {% endfor %}
+{% endblock head %}
+
+
+{% block headnews %}
+          <tr>
+          {% for n in headnews %}
+          <td height="29" align="center" class="f14cul"><a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title }}</a></td>
+          </tr>
+        <tr>
+          <td>　{{ n.gcontent | safe | slice:":50" }}... </td>
+        </tr>
+           {% endfor %}
+      </table>
+      <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="8"></td>
+        </tr>
+        <tr>
+          <td height="1" background="{% static 'images/scszspic_7.png' %}"></td>
+        </tr>
+        <tr>
+          <td height="8"></td>
+        </tr>
+      </table>
+      <table width="93%" border="0" align="center" cellpadding="3" cellspacing="0" class="lanf12">
+        <tr>
+          <td class="f14l">
+            {% for n in headnewsl %}
+                · <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title | slice:":20" }}">{{ n.title | slice:":20" }}</a><br />
+            {% endfor %}
+
+
+           </tr>
+{% endblock headnews %}
+
+   {% block two %}
+    <td width="239" valign="top">
+<div id="tabs">
+    <ul>
+        <li id='tab1'><a href="#tabs-1">通知公告</a></li>
+        <li id='tab2'><a href="#tabs-2">曝光预警</a></li>
+        <span class="baif12l"><a class="more_gg more" href="/homeindex/homenotice" target="_blank">[更多]</a><a class="more_bg more" href="/homeindex/homeexposure" target="_blank">[更多]</a></span>
+    </ul>
+    <div id="tabs-1">
+        {% for n in notice %}
+        <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+            <tr>
+                <td class="f12l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title | slice:":14" }}...</a></td>
+            </tr>
+        </table>
+        {% endfor %}
+
+    </div>
+    <div id="tabs-2">
+
+        {% for n in exposure %}
+        <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+            <tr>
+                <td class="f12l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title }}">{{ n.title | slice:":14" }}...</a></td>
+            </tr>
+        </table>
+        {% endfor %}
+
+    </div>
+</div>
+
+</td>
+  {% endblock two %}
+
+
+  {% block middlehead %}
+<li>
+<a href="#"><img src="{% static 'images/20200306121237_1ld601tiuq.jpg' %}" alt="#"></a>
+</li>
+  {% endblock middlehead %}
+
+{% block loginandtrace %}
+<form  name="foreform" id="validForm" action="/zscp/area/login.area" method="post" class="input_form" onsubmit="return checkCaptcha()">
+<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+            <tr>
+              <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+                <tr>
+                  <td>应用用户快速登录</td>
+                  </tr>
+              </table></td>
+            </tr>
+            <tr>
+              <td bgcolor="#FFFFFF"><table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                <tr>
+                  <td height="10"></td>
+                </tr>
+              </table>
+
+
+              <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td height="10"></td>
+                  </tr>
+                </table>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td align="center"><a href="/admin/"><img src="{% static 'images/scszspic_23(1).jpg' %}" width="296" height="80"  style="cursor:pointer"/></a></td>
+                  </tr>
+                </table>
+                <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td height="10"></td>
+                  </tr>
+              </table>
+
+
+                <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td height="10"></td>
+                  </tr>
+                </table>
+                <table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td align="center"><a href="/greatadmin/"><img src="{% static 'images/scszspic_23.jpg' %}" width="296" height="80"  style="cursor:pointer"/></a></td>
+                  </tr>
+                </table>
+                <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td height="10"></td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+        </table>
+
+   </form>
+
+
+
+
+
+
+        </td>
+      </tr>
+    </table>
+    </td>
+    <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="3" bgcolor="#25b9e2"></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+          <tr>
+            <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+              <tr>
+                <td>质量信息追溯</td>
+                <td align="right" class="f12l2">
+                <a href="#" target="_blank"><img  style="
+    width: 18px;
+    position: relative;
+    top: 5px;
+    margin-right: 4px;
+" src="{% static 'images/camera.png' %}">视频追溯演示</a>
+                <a href="javascript:void(0)" onmouseover="showWeChat()" onmouseout="hideWeChat()"><img  style="
+    width: 18px;
+    position: relative;
+    top: 5px;
+    margin-left:6px;
+    margin-right: 4px;
+" src="{% static 'images/icon-wechat48.png' %}">微信公众号</a>
+                </td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table>
+<div class="wechat-modal">
+                                            <img src="{% static 'images/gzh.png' %}" width="120" height="120">
+                                        </div>
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+          <tr>
+            <td height="15"></td>
+          </tr>
+        </table>
+
+         <form id="form" name="form" action="" method="post">
+            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+          <tr>
+            <td><input id="productCode" placeholder="请输入追溯码(不含括号)..." name="textfield3" type="text" class="shurukuang"  id="textfield42" value="" onmouseover="this.style.borderColor='#FF6600'"  onkeyup="this.value=this.value.replace(/[^\d]/g,'') " onmouseout="this.style.borderColor=''" /></td>
+            <td align="center"><img   onclick="productcodesubmit()" src="{% static 'images/scszspic_10.png' %}" width="100" height="35"  style="cursor:pointer"/></td>
+          </tr>
+        </table>
+         </form>
+
+
+        <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+          <tr>
+            <td height="12"></td>
+          </tr>
+        </table>
+        <table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+          <tr>
+            <td height="48" align="center"><img  onclick="show(1)" src="{% static 'images/scszspic_11.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img  onclick="show(2)" src="{% static 'images/scszspic_12.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img  onclick="show(3)" src="{% static 'images/scszspic_13.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img   onclick="show(4)" src="{% static 'images/scszspic_14.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+          </tr>
+          <tr>
+            <td height="55" align="center"><img  onclick="show(5)" src="{% static 'images/scszspic_15.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img onclick="show(6)" src="{% static 'images/scszspic_16.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img  onclick="show(7)" src="{% static 'images/scszspic_17.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img   onclick="show(8)"src="{% static 'images/scszspic_18.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+          </tr>
+          <tr>
+            <td height="55" align="center"><img  onclick="show(9)" src="{% static 'images/scszspic_19.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img  onclick="show(0)" src="{% static 'images/scszspic_20.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img  onclick="theclear()" src="{% static 'images/scszspic_21.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+            <td align="center"><img  onclick="back()" src="{% static 'images/scszspic_22.png' %}" width="92" height="46"  style="cursor:pointer"/></td>
+          </tr>
+        </table></td>
+    <td width="239" valign="top">
+<table width="233" border="0" align="right" cellpadding="0" cellspacing="0" class="f12">
+                        <tbody>
+                            <tr>
+                                <td height="37" valign="bottom" background="{% static 'images/scszspic_8.png' %}">
+                                    <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+                                        <tbody>
+                                            <tr>
+                                                <td width="108" height="30" align="center">违法举报</td>
+                                                <td width="108" align="right" class="baif12l"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td width="1" bgcolor="#0087ae"></td>
+                                                                <td height="215" valign="top">
+                                                                    <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td height="8"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                    <div class="antiForm">
+
+                                                                        <div>
+                                                                            <img  onclick="jvbao()" src="{% static 'images/jvbao.jpg' %}" width="210" height=""  style="cursor:pointer"/>
+                                                                        </div>
+                                                                        <div class="anti-search-div">
+                                                                            <a onClick="jvbao()" class="button button-primary button-rounded button-small" style="width:198px">点击举报</a>
+
+                                                                        </div>
+                                                                    </div>
+                                                                    <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                                                                        <tbody>
+                                                                            <tr>
+                                                                                <td height="10"></td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </td>
+                                                                <td width="1" bgcolor="#0087ae"></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td height="1" bgcolor="#0087ae"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+{# 一点js #}
+<script type="text/javascript">
+  function jvbao(){
+      window.open('{% url "homeindex:homejvbao" %}','_blank','width=800,height=600,menubar=no,toolbar=no,status=no,scrollbars=yes');
+
+  }
+</script>
+{# 一点js #}
+
+    <td width="5"></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+{% endblock loginandtrace %}
+
+{% block groupshow %}
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td><table width="992" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="3" bgcolor="#25b9e2"></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+            <tr>
+              <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="97%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+                  <tr>
+                    <td>企业展示</td>
+                    <td align="right" class="f12l2"><a href="/homeindex/homegroup" target="_blank">[更多]</a></td>
+                  </tr>
+              </table></td>
+            </tr>
+            <tr>
+              <td height="164" bgcolor="#FFFFFF"><table width="98%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+                <tr>
+                  <td>
+
+     <div class="picnews" style=" width: 100%; margin: auto;">
+
+
+						     <div class="infiniteCarousel"  >
+						      <div class="wrapper" >
+						       <ul id='imgscroll'>
+
+						   {% for n in group %}
+						         <li>
+			              <table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+			               <tr>
+                            <td height="10" align="center" class="f12l"></td>
+                          </tr>
+                          <tr>
+                            <td align="center"><a href="{% url 'homeindex:opennews' n.id %}" target="_blank" ><img src="{{ n.image.url }}" width="158" height="106" /></a></td>
+                          </tr>
+                          <tr>
+                            <td height="32" align="center" class="f12l"><a href="#" target="_blank" title="{{ n.title }}">{{ n.title }}</a></td>
+                          </tr>
+                        </table>
+						         </li>
+                            {% endfor %}
+						       </ul>
+						      </div>
+						     </div>
+
+						  </div>
+
+                </td>
+                </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+{% endblock groupshow %}
+
+{% block threepart %}
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td height="10"></td>
+  </tr>
+</table>
+<table width="1002" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" class="f12">
+  <tr>
+    <td width="5"></td>
+    <td width="379" height="230" valign="top"><table width="374" border="0" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="3" bgcolor="#25b9e2"></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+            <tr>
+              <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td class="lanf16">政策法规</td>
+                    <td align="right" class="f12l2"><a href="node/212.jspx" target="_blank">[更多]</a></td>
+                  </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table>
+      <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="8"></td>
+        </tr>
+      </table>
+        {% for n in legal %}
+           <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+        <tr>
+          <td class="f14l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title | slice:":16" }}">{{ n.title | slice:":20" }}...</a></td>
+        </tr>
+      </table>
+        {% endfor %}
+      <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="8"></td>
+        </tr>
+    </table></td>
+    <td valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="3" bgcolor="#25b9e2"></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#bdd6e0" class="f12">
+            <tr>
+              <td height="33" background="{% static 'images/scszspic_6.png' %}"><table width="92%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td class="lanf16">知识讲堂</td>
+                    <td align="right" class="f12l2"><a href="/homeindex/homeknow" target="_blank" title="更多">[更多]</a></td>
+                  </tr>
+              </table></td>
+            </tr>
+        </table></td>
+      </tr>
+    </table>
+      <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="8"></td>
+        </tr>
+      </table>
+
+        {% for n in know %}
+           <table width="90%" border="0" align="center" cellpadding="1" cellspacing="0" class="lanf12" style="border-bottom:1px dotted #DCDCDC;">
+        <tr>
+          <td class="f14l">· <a href="{% url 'homeindex:opennews' n.id %}" target="_blank" title="{{ n.title | slice:":20" }}">{{ n.title | slice:":20" }}...</a></td>
+        </tr>
+      </table>
+        {% endfor %}
+
+      <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+        <tr>
+          <td height="8"></td>
+        </tr>
+    </table></td>
+    <td width="239" valign="top"><table width="233" border="0" align="right" cellpadding="0" cellspacing="0" class="f12">
+      <tr>
+        <td height="37" valign="bottom" background="{% static 'images/scszspic_8.png' %}"><table width="90%" border="0" align="center" cellpadding="0" cellspacing="0" class="lanf16">
+          <tr>
+            <td width="108" height="30" align="center">互动交流</td>
+            <td align="right" class="baif12l">&nbsp;</td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+          <tr>
+            <td><table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+              <tr>
+                <td width="1" bgcolor="#0087ae"></td>
+                <td><table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                  <tr>
+                    <td height="15"></td>
+                  </tr>
+                </table>
+                          <table width="100%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                            <tr>
+                             <!-- <td align="center"><a href="guestbook.jspx"><img src="/zscp/template/33/bluewise/images/scszspic_27.png" width="188" height="48"  style="cursor:pointer;border:0px;"/></a></td> -->
+                            </tr>
+                          </table>
+                          <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                            <tr>
+                              <td height="12"></td>
+                            </tr>
+                          </table>
+                          <table width="80%" border="0" align="center" cellpadding="0" cellspacing="0" class="f12">
+
+                            <tr>
+                              <td>地址：四川省广元市昭化区<br />
+                                电话：18709319224<br />
+                                传真：xxx-xxxxxx<br />
+                                邮箱：406508998@qq.com<br />
+                              咨询：<a href="http://wpa.qq.com/msgrd?v=3&uin=406508998&site=qq&menu=yes" title="406508998"  target="_blank"><img src="http://wpa.qq.com/pa?p=2:2589725194:52" width="21" height="21" border="0" align="absmiddle" /></a>在线咨询</td>
+                            </tr>
+                          </table>
+                          <table width="90%" border="0" cellpadding="0" cellspacing="0" class="f12">
+                            <tr>
+                              <td height="10"></td>
+                            </tr>
+                        </table></td>
+                <td width="1" bgcolor="#0087ae"></td>
+              </tr>
+            </table></td>
+          </tr>
+          <tr>
+            <td height="1" bgcolor="#0087ae"></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+    <td width="5"></td>
+  </tr>
+</table>
+{% endblock threepart %}
+
+
+{% block mline %}
+      <ul class="nav navbar-nav">
+        <li class=""><a href="/homeindex/homenews">新闻资讯</a></li>
+        <li class=""><a href="/homeindex/hometraceability">在线追溯</a></li>
+        <li class=""><a href="/homeindex/homelegal">政策法规</a></li>
+        <li class=""><a href="/homeindex/homenotice">通知公告</a></li>
+        <li class=""><a href="/homeindex/homeexposure">曝光预警</a></li>
+        <li class=""><a href="/homeindex/homegroup">企业展示</a></li>
+        <li class=""><a href="/homeindex/homenotice">知识讲堂</a></li>
+        <li class=""><a href="/homeindex/homeintroduction">平台介绍</a></li>
+        <li class=""><a href="/homeindex/homecomm">联系我们</a></li>
+      </ul>
+{% endblock mline %}

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+{% block left %}
+
+{% endblock left %}
+{% block header%}
+
+{% endblock header %}
+
+    <!--页面主要内容-->
+    {% block main %}
+    <main class="lyear-layout-content">
+
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card">
+              <div class="card-header"><h4>基本信息</h4></div>
+              <div class="card-body">
+
+                <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                  {% if user.is_authenticated %}
+                  <div class="form-group">
+                    <label class="col-xs-12">信息录入员</label>
+                    <div class="col-xs-12">
+                        <input type="radio" id="example-radio1" name="user" value="{{ user.id }}" checked="checked" style="display:none;padding:0.2em 1em;border:1px solid #CCCCCC;color:#999;">
+                        {{ user.username }}
+                    </div>
+                  </div>
+                    {% endif %}
+                <strong style="color:red;">{{ msg }}</strong>
+                  <div class="form-group has-info">
+                    <label class="col-xs-12" for="example-text-input">疫苗/药物名称</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input-info" name="name" placeholder="信息状态..">
+                    </div>
+                  </div>
+                  <div class="form-group has-info">
+                    <label class="col-xs-12" for="example-email-input">疫苗/药物生产厂家</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input-info" name="factory" placeholder="信息状态..">
+                    </div>
+                  </div>
+                  <div class="form-group has-info">
+                    <label class="col-xs-12" for="example-password-input">疫苗/药物批号</label>
+                    <div class="col-xs-12">
+                      <input class="form-control" type="text" id="example-text-input-info" name="license" placeholder="信息状态..">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <div class="col-xs-12">
+                      <button class="btn btn-primary" type="submit" >提交</button>
+                    </div>
+                  </div>
+                </form>
+
+              </div>
+            </div>
+          </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      
+    </main>
+    {% endblock main %}
+    <!--End 页面主要内容-->
+
+
+
+
